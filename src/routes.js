@@ -4,7 +4,6 @@ import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 import ShopPage from './pages/StorePage/ShopPage';
 import ServicePage from './pages/StorePage/ServicePage';
 import NewsPage from './pages/NewsPage/NewsPage';
-import EventsPage from './pages/EventsPage/EventsPage';
 import GalleryPage from './pages/GalleryPage/GalleryPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 
@@ -28,11 +27,6 @@ const routes = [
         path: '/news',
         exact: false,
         main: () => <NewsPage />
-    },
-    {
-        path: '/events',
-        exact: false,
-        main: () => <EventsPage />
     },
     {
         path: '/gallery',
