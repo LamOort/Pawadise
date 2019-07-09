@@ -1,0 +1,26 @@
+.navigation {
+
+    &__link {
+        &:link,
+        &:visited {
+            display: inline-block;
+            line-height: 5rem;
+        
+            font-size: 2.7rem;
+            font-weight: 400;
+            padding: 1rem 2rem;
+            color: $color-white;
+            text-decoration: none;
+            transition: all .2s;
+    }
+
+        &:hover,
+        &:active {
+            background-position: 100%;
+            color: $color-primary;
+            transform: translateX(1.5rem);
+        }
+    }
+
+
+}

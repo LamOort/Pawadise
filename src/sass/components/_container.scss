@@ -1,0 +1,26 @@
+.container {
+    
+    &--shop {
+        position: relative;
+        height: 75%;
+        width: auto; 
+        //background-color: red;
+    }
+
+    &--service {
+        position: relative;
+        height: 75%;
+        width: auto; 
+    }
+
+    &__notfound {
+        position: relative;
+        text-align: center;
+        color: $color-white;
+        &-img {
+            height: 70.5rem;
+            width: 100%;
+        }
+    }
+    
+}

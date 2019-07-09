@@ -1,0 +1,34 @@
+.box {
+    &--shop {
+        position: relative;
+       // background-color: green;
+        margin: 15.9rem 33rem;
+    }
+
+    &--service {
+        position: relative;
+       // background-color: green;
+        margin: 15.9rem 33rem;
+    }
+
+    &__not-found {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-100%, -50%);
+        color: $color-white;
+        
+        &--para {
+            letter-spacing: 0.5rem;
+        }
+        
+        &-link {
+            position: absolute;
+            color: $color-tertiary-dark;
+            text-decoration: none;
+            font-size: 1rem;
+            margin-top: 4rem;
+        }
+    }
+    
+}

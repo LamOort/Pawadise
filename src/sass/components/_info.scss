@@ -1,0 +1,50 @@
+.info {
+    &--shop {
+        background-color: #fff;
+        &:not(:last-child){
+            margin-bottom: 7rem;
+        }
+        position: relative;
+        height: 20rem;
+        width: auto;
+        color: $color-black;
+        border-radius: 1rem;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    }
+
+    &--service {
+        background-color: #fff;
+        &:not(:last-child){
+            margin-bottom: 7rem;
+        }
+        position: relative;
+        height: 20rem;
+        width: auto;
+        color: $color-black;
+        border-radius: 1rem;
+        box-shadow: 0 1.5rem 4rem rgba($color-black, .15);
+    }
+
+    &__text-container {
+        position: relative;
+        left: 25rem;
+        top: 6.5rem;
+        bottom: 6.5rem;
+        text-align: left;
+
+        &--title {
+            font-size: 3rem;
+        }
+
+        &--address {
+            font-size: 2rem;
+            line-height: 2.4rem;
+        }
+    }
+
+    &--image {
+        position: absolute;
+        left: 5.5rem;
+        margin-top: 2.4rem;
+    }
+}
