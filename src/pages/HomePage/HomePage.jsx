@@ -79,7 +79,7 @@ class HomePage extends Component {
                         <h1 className="heading-primary">
                             <span className="heading-primary--main">Pawadise</span>
                             <span className="heading-primary--sub">is where your pets smile</span>
-                            <button onClick={this.togglePopup} className="btn btn--white btn--animated u-margin-top-small">Tham gia cùng chúng tôi!</button>
+                            <button onClick={this.togglePopup} className="btn btn--white btn--animated u-margin-top-small">Đăng nhập</button>
                             {this.state.showPopup ? (
                                 <LoginForm
                                     closePopup={this.togglePopup}
