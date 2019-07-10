@@ -1,8 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import { stack as Menu} from 'react-burger-menu';
+import nav_img from "../../img/nav-img.png";
+
+
+const navImgStyle = {
+    position: 'fixed',
+    bottom: '0rem',
+    right: '-9rem'
+};
+
 
 class Nav extends Component {
+
+    
     render() {
         return (
             <Menu right >
@@ -12,6 +23,8 @@ class Nav extends Component {
                 <Link to="/service" style={{textDecoration: 'none', color:'#fff'}}  className="menu-item navigation__link">Dịch vụ</Link>
                 <Link to="/gallery" style={{textDecoration: 'none', color:'#fff'}}  className="menu-item navigation__link">Kho ảnh</Link>
                 <Link to="/contact" style={{textDecoration: 'none', color:'#fff'}}  className="menu-item navigation__link">Liên hệ</Link>
+
+                <img src={nav_img} alt="nav-img" style= {navImgStyle}/>
             </Menu>
         );
     }

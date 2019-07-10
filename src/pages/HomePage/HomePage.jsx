@@ -5,12 +5,14 @@ import axios from "axios";
 
 import mainLogo from'../../img/logo-big.png';
 import full_bg from'../../img/bg-full.png';
-import pic1 from'../../img/not-found-1.jpg';
-import pic2 from'../../img/background-2.jpg';
-import pic3 from'../../img/background-3.jpg';
+import pic1 from'../../img/about-img-1.png';
+import pic2 from'../../img/about-img-2.png';
+import pic3 from'../../img/about-img-3.png';
 import shop_img from'../../img/shop.png';
 import news_img from'../../img/news.png';
-import events_img from'../../img/events.png';
+import services_img from'../../img/services.png';
+import gallery_img from'../../img/gallery.png';
+import contact_img from'../../img/contact.png';
 import blue_paw from '../../img/paw.png'
 
 
@@ -123,8 +125,8 @@ class HomePage extends Component {
                     <div className="col-1-of-2">
                         <div className="composition">
                             <img src={pic1} alt="Photo1" className="composition__photo composition__photo--p1"/>
-                            <img src={pic2} alt="Photo2" className="composition__photo composition__photo--p2"/>
-                            <img src={pic3} alt="Photo3" className="composition__photo composition__photo--p3"/>
+                            <img src={pic3} alt="Photo3" className="composition__photo composition__photo--p2"/>
+                            <img src={pic2} alt="Photo2" className="composition__photo composition__photo--p3"/>
                         </div>
                     </div>
                 </div>
@@ -181,7 +183,7 @@ class HomePage extends Component {
                             <div className="card">
                                 <div className="card__side card__side--front">
                                     
-                                    <img src={events_img} alt="Events" className="card__image"/>
+                                    <img src={services_img} alt="Events" className="card__image"/>
                                     
                                     <h4 className="card__heading">
                                         <span className="card__heading-span">Dịch vụ</span> 
@@ -203,7 +205,7 @@ class HomePage extends Component {
                                 <div className="card card--under card--under-1">
                                     <div className="card__side card__side--front">
                                         
-                                        <img src={events_img} alt="Events" className="card__image card__image--under"/>
+                                        <img src={gallery_img} alt="Events" className="card__image card__image--under"/>
                                         
                                         <h4 className="card__heading">
                                             <span className="card__heading-span">Ảnh</span> 
@@ -223,7 +225,7 @@ class HomePage extends Component {
                                 <div className="card card--under card--under-2">
                                     <div className="card__side card__side--front">
                                         
-                                        <img src={events_img} alt="Events" className="card__image card__image--under"/>
+                                        <img src={contact_img} alt="Events" className="card__image card__image--under"/>
                                         
                                         <h4 className="card__heading">
                                             <span className="card__heading-span">Liên Hệ</span> 

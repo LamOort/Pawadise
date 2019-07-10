@@ -9,9 +9,11 @@
 html {
   //This define what 1rem is (62.5% of 16px is 10px)
   font-size: 62.5%;
-
-
+  overflow: scroll; 
+  overflow-x: hidden;
 }
+
+
 
 body {
   box-sizing: border-box;
