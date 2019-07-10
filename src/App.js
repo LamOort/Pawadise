@@ -3,7 +3,9 @@ import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import routes from './routes';
+import setAuthorizationToken from './utils/setAuthorizationToken';
 
+setAuthorizationToken(localStorage.jwtToken);
 class App extends Component {
     render() {
         return (
