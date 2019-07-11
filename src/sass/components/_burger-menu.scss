@@ -29,10 +29,10 @@
       background-image: linear-gradient(
         to left,
         rgba($color-black, 1),
-        rgba($color-black, 0.6));
+        rgba($color-black, 0.75t));
       padding: 2.5em 1.5em 0;
       font-size: $default-font-size;
-      color: $color-black;
+      color: #2a2a2a;
     } 
 
     /* Morph shape necessary with bubble or elastic */
@@ -52,6 +52,7 @@
       opacity: 0 !important;
     }
 
+    
 }
 
 

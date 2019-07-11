@@ -7,7 +7,7 @@ import nav_img from "../../img/nav-img.png";
 const navImgStyle = {
     position: 'fixed',
     bottom: '0rem',
-    right: '-9rem'
+    right: '-9rem',
 };
 
 
@@ -24,7 +24,7 @@ class Nav extends Component {
                 <Link to="/gallery" style={{textDecoration: 'none', color:'#fff'}}  className="menu-item navigation__link">Kho ảnh</Link>
                 <Link to="/contact" style={{textDecoration: 'none', color:'#fff'}}  className="menu-item navigation__link">Liên hệ</Link>
 
-                <img src={nav_img} alt="nav-img" style= {navImgStyle}/>
+                <img src={nav_img} alt="nav-img" className="bm-img" style= {navImgStyle}/>
             </Menu>
         );
     }

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import LoginForm from '../../components/LoginForm/LoginForm';
 import axios from "axios";
 
-import mainLogo from'../../img/logo-big.png';
+
 import full_bg from'../../img/bg-full.png';
 import pic1 from'../../img/about-img-1.png';
 import pic2 from'../../img/about-img-2.png';
@@ -15,30 +15,6 @@ import gallery_img from'../../img/gallery.png';
 import contact_img from'../../img/contact.png';
 import blue_paw from '../../img/paw.png'
 
-
-
-const Welcome = (user, onLogout) => {
-    console.log("Welcome user:", user);
-    return (
-      <li className="dropdown">
-        <a href="#" className="dropdown-toggle" data-toggle="dropdown">
-          <i class="fa fa-user" aria-hidden="true" />
-          Ben
-        </a>
-        <ul className="dropdown-menu">
-          <li>
-            <Link to="/profile">Profiles</Link>
-          </li>
-          <li />
-          <li>
-            <Link to="/" onClick={onLogout}>
-              Sign out
-            </Link>
-          </li>
-        </ul>
-      </li>
-    );
-  };
 
 class HomePage extends Component {
     constructor(props) {
@@ -73,10 +49,7 @@ class HomePage extends Component {
             <main>
                 <img src={full_bg} alt="full-bg" className="bg"/>
                 <header className="header">
-                    <div className="header__logo-box">
-                    <img src={mainLogo} alt="Logo"/>
-                    </div>
-                    
+                
                     <div className="header__text-box">
                         <h1 className="heading-primary">
                             <span className="heading-primary--main">Pawadise</span>
