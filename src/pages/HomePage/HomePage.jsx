@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
-import LoginForm from '../../components/LoginForm/LoginForm';
+import React, { Component } from "react";
+import { Link } from "react-router-dom";
+import LoginForm from "../../components/LoginForm/LoginForm";
 import axios from "axios";
 
 
@@ -15,95 +15,98 @@ import gallery_img from'../../img/gallery.png';
 import contact_img from'../../img/contact.png';
 import blue_paw from '../../img/paw.png'
 
-
 class HomePage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { showPopup: false, user: null };
-      }
-      togglePopup = () => {
-        this.setState({
-          showPopup: !this.state.showPopup
-        });
-      };
-      onLogin = user => {
-        this.setState({
-          user: user
-        });
-      };
-      onLogout = () => {
-        axios
-          .get("http://localhost:3000/logout")
-          .then(res => {
-            console.log(res);
-          })
-          .catch(err => {
-            console.log(err);
-          });
-      };
-        
-    render() {
-        var { user } = this.state;
-        console.log("user render: ", user); 
-        return (
-            <main>
-                <img src={full_bg} alt="full-bg" className="bg"/>
-                <header className="header">
-                
-                    <div className="header__text-box">
-                        <h1 className="heading-primary">
-                            <span className="heading-primary--main">Pawadise</span>
-                            <span className="heading-primary--sub">is where your pets smile</span>
-                            <button onClick={this.togglePopup} className="btn btn--white btn--animated u-margin-top-small">Đăng nhập</button>
-                            {this.state.showPopup ? (
-                                <LoginForm
-                                    closePopup={this.togglePopup}
-                                    onLogin={this.onLogin}
-                                />
-                            ) : null}
-                        </h1>     {/*Add Login and Register buttons */}
-                    </div>
-                </header>
+  constructor(props) {
+    super(props);
+    this.state = { showPopup: false, user: null };
+  }
+  togglePopup = () => {
+    this.setState({
+      showPopup: !this.state.showPopup
+    });
+  };
+  onLogin = user => {
+    this.setState({
+      user: user
+    });
+  };
 
-                
+  render() {
+    const token = localStorage.getItem("jwtToken");
 
-                <section className="section-about">
-                <div className="u-center-text u-margin-top-big">
-                    <h2 className="heading-secondary u-margin-bottom-big">
-                        Đôi điều về chúng tôi
-                    </h2>
-                </div>
+    return (
+      <main>
+        <img src={full_bg} alt="full-bg" className="bg" />
+        <header className="header">
 
-                <div className="row">
-                    <div className="col-1-of-2">
-                        <h3 className="heading-tertiary u-margin-bottom-small">Pawadise, thú cưng luôn cần</h3>
-                        <p className="section-about__para">
-                        Chuyên cung cấp thông tin các cửa hàng mua bán – cafe thú cưng - dịch vụ chăm sóc một cách nhanh chóng và chính xác 
-                        </p>
+          <div className="header__text-box">
+            <h1 className="heading-primary">
+              <span className="heading-primary--main">Pawadise</span>
+              <span className="heading-primary--sub">
+                is where your pets smile
+              </span>
+              {token === null ? (
+                <button
+                  onClick={this.togglePopup}
+                  className="btn btn--white btn--animated u-margin-top-small"
+                >
+                  Đăng nhập
+                </button>
+              ) : null}
+              {this.state.showPopup ? (
+                <LoginForm
+                  closePopup={this.togglePopup}
+                  onLogin={this.onLogin}
+                />
+              ) : null}
+            </h1>{" "}
+            {/*Add Login and Register buttons */}
+          </div>
+        </header>
 
-                        <h3 className="heading-tertiary u-margin-bottom-small">Pawadise có gì?</h3>
-                        <p className="section-about__para">
-                            <ul>
-                                <li>Hơn 200 shop bán đồ tại Đà Nẵng</li>
-                                <li>Hỗ trợ danh mục đa dạng</li>
-                                <li>Luôn cập nhật tin tức, sự kiện hot về các nhóc yêu </li>
-                                <li>Nơi bạn có thể thoải mái chia sẻ kinh nghiệm nuôi thú cưng</li>
-                                <li>Hệ thống dịch vụ chăm sóc vật yêu gần bạn nhất</li>
-                                <li>Dễ sử dụng cho tất cả mọi người </li>
-                            </ul>
-                        </p>
-                        
-                    
-                    </div>
-                    <div className="col-1-of-2">
-                        <div className="composition">
-                            <img src={pic1} alt="Photo1" className="composition__photo composition__photo--p1"/>
-                            <img src={pic3} alt="Photo3" className="composition__photo composition__photo--p2"/>
-                            <img src={pic2} alt="Photo2" className="composition__photo composition__photo--p3"/>
-                        </div>
-                    </div>
-                </div>
-                </section>
+        <section className="section-about">
+          <div className="u-center-text u-margin-top-big">
+            <h2 className="heading-secondary u-margin-bottom-big">
+              Đôi điều về chúng tôi
+            </h2>
+          </div>
+
+          <div className="row">
+            <div className="col-1-of-2">
+              <h3 className="heading-tertiary u-margin-bottom-small">
+                Pawadise, thú cưng luôn cần
+              </h3>
+              <p className="section-about__para">
+                Chuyên cung cấp thông tin các cửa hàng mua bán – cafe thú cưng -
+                dịch vụ chăm sóc một cách nhanh chóng và chính xác
+              </p>
+
+              <h3 className="heading-tertiary u-margin-bottom-small">
+                Pawadise có gì?
+              </h3>
+              <p className="section-about__para">
+                <ul>
+                  <li>Hơn 200 shop bán đồ tại Đà Nẵng</li>
+                  <li>Hỗ trợ danh mục đa dạng</li>
+                  <li>Luôn cập nhật tin tức, sự kiện hot về các nhóc yêu </li>
+                  <li>
+                    Nơi bạn có thể thoải mái chia sẻ kinh nghiệm nuôi thú cưng
+                  </li>
+                  <li>Hệ thống dịch vụ chăm sóc vật yêu gần bạn nhất</li>
+                  <li>Dễ sử dụng cho tất cả mọi người </li>
+                </ul>
+              </p>
+            </div>
+            <div className="col-1-of-2">
+              <div className="composition">
+                <img src={pic1} alt="Photo1" className="composition__photo composition__photo--p1"/>
+                <img src={pic3} alt="Photo3" className="composition__photo composition__photo--p2"/>
+                <img src={pic2} alt="Photo2" className="composition__photo composition__photo--p3"/>
+              </div>
+            </div>
+          </div>
+        </section>
+
 
                 <section className="section-features">
                     <div className="u-center-text u-margin-bottom-big">
