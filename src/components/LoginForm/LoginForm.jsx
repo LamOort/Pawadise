@@ -26,7 +26,7 @@ class LoginForm extends Component {
   onHandleLogin = e => {
     e.preventDefault();
     const { username, password } = this.state;
-    const { closePopup, onLogin } = this.props;
+    const { closePopup,loggedIn } = this.props;
     callApi("login", "POST", {
       username: username,
       password: password
@@ -35,7 +35,7 @@ class LoginForm extends Component {
         const token = res.data.token;
         localStorage.setItem("jwtToken", token);
         setAuthorizationToken(token);
-        onLogin(res.data.user);
+        loggedIn();
         closePopup();
       }
     });
