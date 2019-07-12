@@ -12,36 +12,48 @@ const navImgStyle = {
 };
 
 const Welcome = ({ user, onLogout }) => {
-  return(
-<li className="dropdown">
-    <a
-      href="#"
-      style={{ textDecoration: "none", color: "#fff" }}
-      className="dropdown-toggle menu-item navigation__link"
-      data-toggle="dropdown"
-    >
-      {user.name}
-    </a>
-    <ul className="dropdown-menu">
-      <li>
-        <Link to={`/profile/${user.username}`}>Profiles</Link>
-      </li>
-      <li />
-      <li>
-        <Link to="/" onClick={onLogout}>
-          Sign out
-        </Link>
-      </li>
-    </ul>
-  </li>
+  return (
+    <li className="dropdown">
+      <a
+        href="#"
+        style={{ textDecoration: "none", color: "#fff" }}
+        className="dropdown-toggle menu-item navigation__link"
+        data-toggle="dropdown"
+      >
+        {user.name}
+      </a>
+      <ul className="dropdown-menu">
+        <li>
+          <Link to={`/profile/${user.username}`}>Profiles</Link>
+        </li>
+        <li />
+        <li>
+          <Link to="/" onClick={onLogout}>
+            Sign out
+          </Link>
+        </li>
+      </ul>
+    </li>
   );
-
 };
 class Nav extends Component {
   constructor(props) {
     super(props);
-    this.state = { user: null };
+    this.state = { user: null};
   }
+
+  onLogout = () => {
+    callApi("logout", "GET", null)
+      .then(res => {
+        localStorage.removeItem("jwtToken");
+        this.setState({
+          user: null
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   componentWillMount() {
     const token = localStorage.getItem("jwtToken");
@@ -56,6 +68,7 @@ class Nav extends Component {
 
   render() {
     const { user } = this.state;
+
     return (
       <Menu right>
         {user !== null ? (
@@ -113,19 +126,6 @@ class Nav extends Component {
       </Menu>
     );
   }
-
-  onLogout = () => {
-    callApi("logout", "GET", null)
-      .then(res => {
-        this.setState({
-          user: null
-        });
-        localStorage.removeItem("jwtToken");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
 }
 
 export default Nav;

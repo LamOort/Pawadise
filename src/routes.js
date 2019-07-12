@@ -6,6 +6,8 @@ import ServicePage from './pages/StorePage/ServicePage';
 import NewsPage from './pages/NewsPage/NewsPage';
 import GalleryPage from './pages/GalleryPage/GalleryPage';
 import ContactPage from './pages/ContactPage/ContactPage';
+import ShopDetailsPage from './pages/StorePage/ShopDetailsPage';
+import ServiceDetailsPage from './pages/StorePage/ServiceDetailsPage';
 
 const routes = [
     {
@@ -35,6 +37,26 @@ const routes = [
     },
     {
         path: '/contact',
+        exact: false,
+        main: () => <ContactPage />
+    },
+    {
+        path: '/stores/:slug',
+        exact: false,
+        main: ({match}) => <ShopDetailsPage match={match}/>
+    },
+    {
+        path: '/services/:slug',
+        exact: false,
+        main: ({match}) => <ServiceDetailsPage match={match}/>
+    },
+    {
+        path: '/contact',
+        exact: false,
+        main: () => <ContactPage />
+    },
+    {
+        path: '/profile/:slug',
         exact: false,
         main: () => <ContactPage />
     },
