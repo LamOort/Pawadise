@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Nav from './components/Nav/Nav';
 import Footer from './components/Footer/Footer';
+import Logo from './components/Logo';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import routes from './routes';
 import setAuthorizationToken from './utils/setAuthorizationToken';
@@ -13,6 +14,7 @@ class App extends Component {
                 <div>
                     <Nav/>
                         {this.showContent(routes)}
+                    <Logo/>
                     <Footer />
                 </div>
             </Router>
