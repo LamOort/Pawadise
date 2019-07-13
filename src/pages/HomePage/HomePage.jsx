@@ -64,7 +64,7 @@ class HomePage extends Component {
         </header>
 
         <section className="section-about">
-          <div className="u-center-text u-margin-top-big">
+          <div className="u-center-text">
             <h2 className="heading-secondary u-margin-bottom-big">
               Đôi điều về chúng tôi
             </h2>
@@ -75,7 +75,7 @@ class HomePage extends Component {
               <h3 className="heading-tertiary u-margin-bottom-small">
                 Pawadise, thú cưng luôn cần
               </h3>
-              <p className="section-about__para">
+              <p className="section-about__para u-margin-bottom-big">
                 Chuyên cung cấp thông tin các cửa hàng mua bán – cafe thú cưng -
                 dịch vụ chăm sóc một cách nhanh chóng và chính xác
               </p>
