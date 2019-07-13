@@ -3,37 +3,43 @@ import decode from "jwt-decode";
 import callApi from "../../utils/callApi";
 import React, { Component } from "react";
 import { stack as Menu } from "react-burger-menu";
-import nav_img from "../../img/nav-img.png";
+import nav_img from "../../img/nav-img-small.png";
 
 const navImgStyle = {
   position: "fixed",
   bottom: "0rem",
-  right: "-9rem"
+  right: "4.5rem"
 };
 
 const Welcome = ({ user, onLogout }) => {
   return(
-<li className="dropdown">
-    <a
-      href="#"
-      style={{ textDecoration: "none", color: "#fff" }}
-      className="dropdown-toggle menu-item navigation__link"
-      data-toggle="dropdown"
-    >
-      {user.name}
-    </a>
-    <ul className="dropdown-menu">
-      <li>
-        <Link to={`/profile/${user.username}`}>Profiles</Link>
+    <li style={{ listStyleType: "none" }} className="navigation__welcome">
+        <a
+          href="#"
+          style={{ textDecoration: "none" }}
+          className="dropdown-toggle menu-item navigation__user"
+          data-toggle="dropdown"
+        >
+          {user.name}
+        </a>
+        <ul className="dropdown-menu">
+          <li style={{ listStyleType: "none" }}>
+            <Link 
+            style={{ textDecoration: "none" }} className="navigation__user--attribute" 
+            to={`/profile/${user.username}`}>&bull; Trang cá nhân</Link>
+          </li>
+
+          <li style={{ listStyleType: "none" }}>
+            <Link 
+            style={{ textDecoration: "none" }}
+            className="navigation__user--attribute" 
+            to="/" 
+            onClick={onLogout}>
+              &bull; Đăng xuất
+            </Link>
+          </li>
+        </ul>
       </li>
-      <li />
-      <li>
-        <Link to="/" onClick={onLogout}>
-          Sign out
-        </Link>
-      </li>
-    </ul>
-  </li>
   );
 
 };
@@ -66,42 +72,42 @@ class Nav extends Component {
           style={{ textDecoration: "none", color: "#fff" }}
           className="menu-item navigation__link"
         >
-          Trang chủ
+          &diams; Trang chủ
         </Link>
         <Link
           to="/news"
           style={{ textDecoration: "none", color: "#fff" }}
           className="menu-item navigation__link"
         >
-          Tin tức
+          &diams; Tin tức
         </Link>
         <Link
           to="/shop"
           style={{ textDecoration: "none", color: "#fff" }}
           className="menu-item navigation__link"
         >
-          Cửa hàng
+          &diams; Cửa hàng
         </Link>
         <Link
           to="/service"
           style={{ textDecoration: "none", color: "#fff" }}
           className="menu-item navigation__link"
         >
-          Dịch vụ
+          &diams; Dịch vụ
         </Link>
         <Link
           to="/gallery"
           style={{ textDecoration: "none", color: "#fff" }}
           className="menu-item navigation__link"
         >
-          Kho ảnh
+          &diams; Kho ảnh
         </Link>
         <Link
           to="/contact"
           style={{ textDecoration: "none", color: "#fff" }}
           className="menu-item navigation__link"
         >
-          Liên hệ
+          &diams; Liên hệ
         </Link>
 
         <img

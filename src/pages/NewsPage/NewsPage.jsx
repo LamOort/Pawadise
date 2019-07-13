@@ -1,11 +1,23 @@
 import React, { Component } from 'react';
+import full_bg from'../../img/bg-full.png';
 
 class NewsPage extends Component {
     render() {
         return (
-            <div>
-                <h1>this is news page.</h1>
-            </div>
+            <main>
+                <img src={full_bg} alt="full-bg" className="bg"/>
+                <header className="header--news"/>
+
+                <section className="news">
+                    <div className="news__post-box">
+                        <div className="news__post-box--header">
+                            <div className="new__post-box--body">
+                                    
+                            </div>    
+                        </div> 
+                    </div>
+                </section>
+            </main>
         );
     }
 }

@@ -65,7 +65,7 @@ class HomePage extends Component {
         </header>
 
         <section className="section-about">
-          <div className="u-center-text u-margin-top-big">
+          <div className="u-center-text">
             <h2 className="heading-secondary u-margin-bottom-big">
               Đôi điều về chúng tôi
             </h2>
@@ -76,7 +76,7 @@ class HomePage extends Component {
               <h3 className="heading-tertiary u-margin-bottom-small">
                 Pawadise, thú cưng luôn cần
               </h3>
-              <p className="section-about__para">
+              <p className="section-about__para u-margin-bottom-big">
                 Chuyên cung cấp thông tin các cửa hàng mua bán – cafe thú cưng -
                 dịch vụ chăm sóc một cách nhanh chóng và chính xác
               </p>
@@ -159,7 +159,7 @@ class HomePage extends Component {
                             <div className="card">
                                 <div className="card__side card__side--front">
                                     
-                                    <img src={services_img} alt="Events" className="card__image"/>
+                                    <img src={services_img} alt="Services" className="card__image"/>
                                     
                                     <h4 className="card__heading">
                                         <span className="card__heading-span">Dịch vụ</span> 
@@ -181,7 +181,7 @@ class HomePage extends Component {
                                 <div className="card card--under card--under-1">
                                     <div className="card__side card__side--front">
                                         
-                                        <img src={gallery_img} alt="Events" className="card__image card__image--under"/>
+                                        <img src={gallery_img} alt="Gallery" className="card__image card__image--under"/>
                                         
                                         <h4 className="card__heading">
                                             <span className="card__heading-span">Ảnh</span> 
