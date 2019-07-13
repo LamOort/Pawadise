@@ -1,72 +1,64 @@
-import React, { Component } from 'react';
-import full_bg from'../../img/bg-full.png';
-import shop_img from'../../img/shop.png';
-import blue_paw from '../../img/paw.png'
+import React, { Component } from "react";
+import callApi from "../../utils/callApi";
+import { Link } from "react-router-dom";
 
+import full_bg from "../../img/bg-full.png";
+import shop_img from "../../img/shop.png";
+import blue_paw from "../../img/paw.png";
+
+const ListItem = ({shop}) => {
+  return (
+    <div className="info--shop">
+      <img src={shop_img} alt="shopPhoto" className="info--image" />
+      <div className="info__text-container">
+        <div className="info__text-container--title">{shop.name}</div>
+        <div className="info__text-container--address">Địa chỉ: {shop.address}</div>
+      </div>
+
+      <button className="btn__review">
+        Review
+        <img src={blue_paw} alt="paw_icon" className="btn__review--paw" />
+      </button>
+    </div>
+  );
+};
 class ShopPage extends Component {
-    render() {
-        return (
-            <main>
-                <img src={full_bg} alt="full-bg" className="bg"/>
-                <header className="header--shop"/>
-                
-                <section className="section-shopList">
-                    <div className="container--shop">
-                        <div className="box--shop">
-                            <div className="info--shop">
-                                <img src={shop_img} alt="shopPhoto" className="info--image"/>
-                                <div className="info__text-container">
-                                    <div className="info__text-container--title">K-pet Mart</div>
-                                    <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
-                                </div>
-                                
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
-                            </div>
+  constructor(props) {
+    super(props);
+    this.state = {
+      shops: []
+    };
+  }
+  componentWillMount() {
+    callApi("shop", "GET", null).then(res => {
+      console.log(res);
+      this.setState({
+        shops: res.data
+      });
+    });
+  }
+  render() {
+    const { shops } = this.state;
+    const result = shops.map(shop => {
+      return (
+        <Link to={`stores/${shop._id}`} key={shop._id}>
+          <ListItem shop={shop}/>
+        </Link>
+      );
+    });
+    return (
+      <main>
+        <img src={full_bg} alt="full-bg" className="bg" />
+        <header className="header--shop" />
 
-                            <div className="info--shop">
-                                <img src={shop_img} alt="shopPhoto" className="info--image"/>
-                                <div className="info__text-container">
-                                    <div className="info__text-container--title">K-pet Mart</div>
-                                    <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
-                                </div>
-
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
-                            </div>
-
-                            <div className="info--shop">
-                                <img src={shop_img} alt="shopPhoto" className="info--image"/>
-                                <div className="info__text-container">
-                                    <div className="info__text-container--title">K-pet Mart</div>
-                                    <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
-                                </div>
-
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
-                            </div>
-
-                            <div className="info--shop">
-                                <img src={shop_img} alt="shopPhoto" className="info--image"/>
-                                <div className="info__text-container">
-                                    <div className="info__text-container--title">K-pet Mart</div>
-                                    <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
-                                </div>
-
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
-                            </div>
-
-                            <div className="info--shop">
-                                <img src={shop_img} alt="shopPhoto" className="info--image"/>
-                                <div className="info__text-container">
-                                    <div className="info__text-container--title">K-pet Mart</div>
-                                    <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
-                                </div>
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </main>
-        );
-    }
+        <section className="section-shopList">
+          <div className="container--shop">
+            <div className="box--shop">{result}</div>
+          </div>
+        </section>
+      </main>
+    );
+  }
 }
 
 export default ShopPage;

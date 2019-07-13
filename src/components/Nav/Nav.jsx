@@ -41,13 +41,25 @@ const Welcome = ({ user, onLogout }) => {
         </ul>
       </li>
   );
-
 };
 class Nav extends Component {
   constructor(props) {
     super(props);
-    this.state = { user: null };
+    this.state = { user: null};
   }
+
+  onLogout = () => {
+    callApi("logout", "GET", null)
+      .then(res => {
+        localStorage.removeItem("jwtToken");
+        this.setState({
+          user: null
+        });
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
 
   componentWillMount() {
     const token = localStorage.getItem("jwtToken");
@@ -62,6 +74,7 @@ class Nav extends Component {
 
   render() {
     const { user } = this.state;
+
     return (
       <Menu right>
         {user !== null ? (
@@ -119,19 +132,6 @@ class Nav extends Component {
       </Menu>
     );
   }
-
-  onLogout = () => {
-    callApi("logout", "GET", null)
-      .then(res => {
-        this.setState({
-          user: null
-        });
-        localStorage.removeItem("jwtToken");
-      })
-      .catch(err => {
-        console.log(err);
-      });
-  };
 }
 
 export default Nav;
