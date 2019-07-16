@@ -8,6 +8,7 @@ import GalleryPage from './pages/GalleryPage/GalleryPage';
 import ContactPage from './pages/ContactPage/ContactPage';
 import ShopDetailsPage from './pages/StorePage/ShopDetailsPage';
 import ServiceDetailsPage from './pages/StorePage/ServiceDetailsPage';
+import ProfilePage from './pages/ProfilePage/ProfilePage';
 
 const routes = [
     {
@@ -58,7 +59,7 @@ const routes = [
     {
         path: '/profile/:slug',
         exact: false,
-        main: () => <ContactPage />
+        main: () => <ProfilePage />
     },
     {
         path: '',

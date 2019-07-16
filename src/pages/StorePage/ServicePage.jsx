@@ -21,7 +21,7 @@ class ServicePage extends Component {
                                     <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
                                 </div>
                                 
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
+                                <button className="btn__action">Review<img src={blue_paw} alt="paw_icon" className="btn__action--paw"/></button>
                             </div>
 
                             <div className="info--service">
@@ -31,7 +31,7 @@ class ServicePage extends Component {
                                     <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
                                 </div>
 
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
+                                <button className="btn__action">Review<img src={blue_paw} alt="paw_icon" className="btn__action--paw"/></button>
                             </div>
 
                             <div className="info--service">
@@ -41,7 +41,7 @@ class ServicePage extends Component {
                                     <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
                                 </div>
 
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
+                                <button className="btn__action">Review<img src={blue_paw} alt="paw_icon" className="btn__action--paw"/></button>
                             </div>
 
                             <div className="info--service">
@@ -51,7 +51,7 @@ class ServicePage extends Component {
                                     <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
                                 </div>
 
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
+                                <button className="btn__action">Review<img src={blue_paw} alt="paw_icon" className="btn__action--paw"/></button>
                             </div>
 
                             <div className="info--service">
@@ -60,7 +60,7 @@ class ServicePage extends Component {
                                     <div className="info__text-container--title">K-pet Mart</div>
                                     <div className="info__text-container--address">Địa chỉ: Phan Thanh</div>
                                 </div>
-                                <button className="btn__review">Review<img src={blue_paw} alt="paw_icon" className="btn__review--paw"/></button>
+                                <button className="btn__action">Review<img src={blue_paw} alt="paw_icon" className="btn__action--paw"/></button>
                             </div>
                         </div>
                     </div>
