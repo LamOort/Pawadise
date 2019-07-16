@@ -11,13 +11,13 @@ const ListItem = ({shop}) => {
     <div className="info--shop">
       <img src={shop_img} alt="shopPhoto" className="info--image" />
       <div className="info__text-container">
-        <div className="info__text-container--title">{shop.name}</div>
-        <div className="info__text-container--address">Địa chỉ: {shop.address}</div>
+        <p className="info__text-container--title">{shop.name}</p>
+        <p className="info__text-container--address">Địa chỉ: {shop.address}</p>
       </div>
 
-      <button className="btn__review">
-        Review
-        <img src={blue_paw} alt="paw_icon" className="btn__review--paw" />
+      <button className="btn__action">
+        Đánh giá
+        <img src={blue_paw} alt="paw_icon" className="btn__action--paw" />
       </button>
     </div>
   );

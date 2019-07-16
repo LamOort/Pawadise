@@ -12,24 +12,26 @@
 
     &__form {
         position: relative;
-        padding: 0 27.8rem;
+        padding: 0 10%;
         margin: 7rem 0;
     }
 
     &__left {
         display: inline-block;
-        left: 27.8rem;
-        width: 50%;
+        margin-left: 4.5%;
+        max-width: 50%;
     }
     
     &__right {
         display: inline-block;
         position: absolute;
-        width: 50%;
+        margin-left: 7%;
+        max-width: 30%;
         transform: translateY(-5.5xrem);
         
         &--title {
             position: absolute;
+            width: 20rem;
             top: 0;
         }
 
@@ -55,6 +57,7 @@
                 border-right: transparent !important;
                 border-bottom: .4rem transparent !important;
                 font-size: $default-font-size;
+                font-family: inherit;
                 font-weight: 400;
                 color: $color-black;
             }
@@ -87,6 +90,7 @@
         border-bottom: .4rem transparent !important;
         font-size: 2rem;
         font-weight: 400;
+        font-family: inherit;
         width: 55rem;
         color: $color-black;
         padding: 3.2rem;
