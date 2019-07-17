@@ -74,18 +74,35 @@
         color: $color-white;
     }
 
+    &__avatar-container {
+        position: absolute;
+        width: 30rem;
+        height: 30rem;
+        border-radius: 50%;
+        overflow: hidden;
+        top: 123%;
+        left: 73.5%;
+    }
+
     &__avatar {
         position: absolute;
-        max-height: 30%;
-        max-width: 30%;
-        right: 14%;
-        top: 130%;
+        min-width: 100%;
+        min-height: 100%;
+        width: auto;
+        height: auto;
+        left: 50%;
+        top: 50%;
+        object-fit: contain;
+        -webkit-transform: translate(-50%, -50%);
+        -moz-transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        transform: translate(-50%, -50%);
     }
 
     &__change-avatar-button {
         position: absolute;
         right: 14.5%;
-        top: 160%;
+        bottom: -80%;
         width: 14.8rem;
         max-width: 10%;
         height: 6rem;

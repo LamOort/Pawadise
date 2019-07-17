@@ -4,6 +4,7 @@ import callApi from '../../utils/callApi';
 import SeparationLine from '../../components/SeparationLine';
 import avatar from'../../img/user-avatar-sample.png';
 
+
 class ProfilePage extends Component {
     componentDidMount(){
         callApi('users/me','GET',null).then(res=>{
@@ -47,7 +48,7 @@ class ProfilePage extends Component {
                             <input
                             className="profile__value"
                             type="text"
-                            placeholder="Bạn bao nhiêu nồi bánh chưng rồi"
+                            placeholder="Bạn bao nhiêu nồi bánh chưng rồi ?"
                             name="age"
                             />
                             </div>
@@ -115,7 +116,9 @@ class ProfilePage extends Component {
                         }}>
                     </div>
 
-                    <img src={avatar} alt="user avatar" className="profile__avatar"/>
+                    <div className="profile__avatar-container">
+                        <img src={avatar} alt="user avatar" className="profile__avatar"/>
+                    </div>
 
                     <button className="profile__change-avatar-button">
                         Chọn ảnh

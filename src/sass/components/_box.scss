@@ -15,12 +15,8 @@
         position: absolute;
         top: 50%;
         left: 50%;
-        transform: translate(-100%, -50%);
+        transform: translate(-50%, -230%);
         color: $color-white;
-        
-        &--para {
-            letter-spacing: 0.5rem;
-        }
         
         &-link {
             position: absolute;
