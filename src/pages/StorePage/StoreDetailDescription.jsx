@@ -4,6 +4,7 @@ import SeparationLine from '../../components/SeparationLine';
 
 class StoreDetailDescription extends Component {
     render() {
+        const {info} = this.props;
         return (
             <div className="store__description">
                 <div className="store__description--general">
@@ -23,11 +24,11 @@ class StoreDetailDescription extends Component {
 
                     <div className="store__description--general--right">
                         <p className="store__description--value">
-                            12312930123
+                            {info.phoneNumber}
                         </p>
 
                         <p className="store__description--value">
-                           8:00 - 21:00
+                           {info.openTime}
                         </p>
 
                         <p className="store__description--value">
@@ -44,11 +45,12 @@ class StoreDetailDescription extends Component {
                     <SeparationLine position="absolute" bottom="80%" opacity=".2" margin="0 0" width="100%" />
 
                     <div className="store__description--list">
-                        <li>Nhiều sản phẩm dành cho mèo chó</li>
+                        {info.description}
+                        {/* <li>Nhiều sản phẩm dành cho mèo chó</li>
                         <li>Nhiều chương trình ưu đãi và giảm giá</li>
                         <li>Sản phẩm chất lượng và nguồn gốc rõ ràng</li>
                         <li>Hỗ trợ giao hàng ngoại tỉnh</li>
-                        <li>Nhân viên nhiệt tình vui vẻ</li>
+                        <li>Nhân viên nhiệt tình vui vẻ</li> */}
                     </div>
                 </div>
             </div>

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import LoginForm from "../../components/LoginForm/LoginForm";
+import { connect } from "react-redux";
 
 import full_bg from "../../img/bg-full.png";
 import pic1 from "../../img/about-img-1.png";
@@ -16,24 +17,17 @@ import blue_paw from "../../img/paw.png";
 class HomePage extends Component {
   constructor(props) {
     super(props);
-    this.state = { showPopup: false, loggedIn: false };
+    this.state = { showPopup: false };
   }
+  
   togglePopup = () => {
     this.setState({
       showPopup: !this.state.showPopup
     });
   };
 
-  loggedIn = () => {
-    this.setState({
-      loggedIn: !this.state.loggedIn
-    });
-  };
-
   render() {
-    const { loggedIn } = this.state;
-    const token = localStorage.getItem("jwtToken");
-
+    const { isAuthenticated } = this.props.auth;
     return (
       <main>
         <img src={full_bg} alt="full-bg" className="bg" />
@@ -44,7 +38,7 @@ class HomePage extends Component {
               <span className="heading-primary--sub">
                 is where your pets smile
               </span>
-              {!loggedIn && !token ? (
+              {!isAuthenticated ? (
                 <button
                   onClick={this.togglePopup}
                   className="btn btn--white btn--animated u-margin-top-small"
@@ -283,4 +277,11 @@ class HomePage extends Component {
   }
 }
 
-export default HomePage;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(HomePage);
