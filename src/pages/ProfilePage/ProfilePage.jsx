@@ -1,129 +1,130 @@
-import React, { Component } from 'react';
-import callApi from '../../utils/callApi';
+import React, { Component } from "react";
+import { connect } from "react-redux";
 
-import SeparationLine from '../../components/SeparationLine';
-import avatar from'../../img/user-avatar-sample.png';
+import SeparationLine from "../../components/SeparationLine";
+import avatar from "../../img/user-avatar-sample.png";
 
 class ProfilePage extends Component {
-    componentDidMount(){
-        callApi('users/me','GET',null).then(res=>{
-            console.log(res);            
-        })
-    }
-    render() {
-        return (
-            <main>
-                <header className="header--profile"/>
+  render() {
+    const { user } = this.props.auth;
 
-                <section className="profile">
-                    <h2 className="profile__title">Thông tin cá nhân</h2>
+    return (
+      <main>
+        <header className="header--profile" />
 
-                    <SeparationLine position="relative" bottom="5" opacity=".2" margin="0 14rem" />
+        <section className="profile">
+          <h2 className="profile__title">Thông tin cá nhân</h2>
 
-                    <div className="profile__info-sprout">
-                        <div className="profile__info--text-container">
-                            <label className="profile__attribute">
-                                Tên
-                            </label>
+          <SeparationLine
+            position="relative"
+            bottom="5"
+            opacity=".2"
+            margin="0 14rem"
+          />
 
-                            <div className="profile__value-sprout">
+          <div className="profile__info-sprout">
+            <div className="profile__info--text-container">
+              <label className="profile__attribute">Tên</label>
 
-                            <input
-                            className="profile__value"
-                            type="text"
-                            placeholder="Quý danh"
-                            name="name"
-                            />
-                            </div>
-                        </div>
+              <div className="profile__value-sprout">
+                <input
+                  className="profile__value"
+                  type="text"
+                  placeholder="Quý danh"
+                  name="name"
+                  value={user.name}
+                />
+              </div>
+            </div>
 
-                        <div className="profile__info--text-container">
-                            <label className="profile__attribute">
-                                Tuổi
-                            </label>
+            <div className="profile__info--text-container">
+              <label className="profile__attribute">Tuổi</label>
 
-                            <div className="profile__value-sprout">
+              <div className="profile__value-sprout">
+                <input
+                  className="profile__value"
+                  type="text"
+                  placeholder="Bạn bao nhiêu nồi bánh chưng rồi"
+                  name="age"
+                  value={user.age}
+                />
+              </div>
+            </div>
 
-                            <input
-                            className="profile__value"
-                            type="text"
-                            placeholder="Bạn bao nhiêu nồi bánh chưng rồi"
-                            name="age"
-                            />
-                            </div>
-                        </div>
+            <div className="profile__info--text-container">
+              <label className="profile__attribute">Email</label>
 
-                        <div className="profile__info--text-container">
-                            <label className="profile__attribute">
-                                Email
-                            </label>
+              <div className="profile__value-sprout">
+                <input
+                  className="profile__value"
+                  type="text"
+                  placeholder="Email"
+                  name="email"
+                  value={user.email}
+                />
+              </div>
+            </div>
 
-                            <div className="profile__value-sprout">
+            <div className="profile__info--text-container">
+              <label className="profile__attribute">Số điện thoại</label>
 
-                            <input
-                            className="profile__value"
-                            type="text"
-                            placeholder="Email"
-                            name="email"
-                            />
-                            </div>
-                        </div>
+              <div className="profile__value-sprout">
+                <input
+                  className="profile__value"
+                  type="text"
+                  placeholder="Giúp chúng tôi giữ liên lạc"
+                  name="phoneNumber"
+                  value={user.username}
+                />
+              </div>
+            </div>
 
-                        <div className="profile__info--text-container">
-                            <label className="profile__attribute">
-                                Số điện thoại
-                            </label>
+            <div className="profile__info--text-container">
+              <label className="profile__attribute">Địa chỉ</label>
 
-                            <div className="profile__value-sprout">
+              <div className="profile__value-sprout">
+                <input
+                  className="profile__value"
+                  type="text"
+                  placeholder="Bạn nhà ở đâu thế ?"
+                  name="address"
+                />
+              </div>
+            </div>
 
-                            <input
-                            className="profile__value"
-                            type="text"
-                            placeholder="Giúp chúng tôi giữ liên lạc"
-                            name="phoneNumber"
-                            />
-                            </div>
-                        </div>
+            <button className="profile__save-button">Lưu</button>
+          </div>
 
-                        <div className="profile__info--text-container">
-                            <label className="profile__attribute">
-                                Địa chỉ
-                            </label>
+          <div
+            style={{
+              borderLeft: "1px solid #000",
+              borderRight: "1px solid #000",
+              height: "50rem",
+              position: "absolute",
+              right: "33%",
+              top: "127%",
+              opacity: ".2"
+            }}
+          />
 
-                            <div className="profile__value-sprout">
+          <img
+            src={`/${user.avatar}`}
+            alt="user avatar"
+            className="profile__avatar"
+          />
 
-                            <input
-                            className="profile__value"
-                            type="text"
-                            placeholder="Bạn nhà ở đâu thế ?"
-                            name="address"
-                            />
-                            </div>
-                        </div>
-
-                        <button className="profile__save-button">Lưu</button>
-                    </div>
-
-                    <div style={{
-                        borderLeft: '1px solid #000',
-                        borderRight: '1px solid #000',
-                        height:'50rem',
-                        position:'absolute',
-                        right:'33%',
-                        top:'127%',
-                        opacity:'.2',
-                        }}>
-                    </div>
-
-                    <img src={avatar} alt="user avatar" className="profile__avatar"/>
-
-                    <button className="profile__change-avatar-button">
-                        Chọn ảnh
-                    </button>
-                </section>
-            </main>
-        );
-    }
+          <button className="profile__change-avatar-button">Chọn ảnh</button>
+        </section>
+      </main>
+    );
+  }
 }
 
-export default ProfilePage;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  null
+)(ProfilePage);

@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import decode from "jwt-decode";
-import callApi from "../../utils/callApi";
+import { connect } from "react-redux";
+import { actLogoutUser } from "../../actions/index";
 import React, { Component } from "react";
 import { stack as Menu } from "react-burger-menu";
 import nav_img from "../../img/nav-img-small.png";
@@ -48,36 +48,17 @@ class Nav extends Component {
     this.state = { user: null};
   }
 
-  onLogout = () => {
-    callApi("logout", "GET", null)
-      .then(res => {
-        localStorage.removeItem("jwtToken");
-        this.setState({
-          user: null
-        });
-      })
-      .catch(err => {
-        console.log(err);
-      });
+  onLogout = e => {
+    e.preventDefault();
+    this.props.actLogoutUser();
   };
 
-  componentWillMount() {
-    const token = localStorage.getItem("jwtToken");
-    if (token) {
-      callApi(`users/${decode(token)._id}`, "GET", null).then(res => {
-        this.setState({
-          user: res.data
-        });
-      });
-    }
-  }
-
   render() {
-    const { user } = this.state;
+    const { isAuthenticated, user } = this.props.auth;
 
     return (
       <Menu right>
-        {user !== null ? (
+        {isAuthenticated ? (
           <Welcome user={user} onLogout={this.onLogout} />
         ) : null}
         <Link
@@ -134,4 +115,11 @@ class Nav extends Component {
   }
 }
 
-export default Nav;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { actLogoutUser }
+)(Nav);
