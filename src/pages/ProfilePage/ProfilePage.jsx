@@ -106,12 +106,13 @@ class ProfilePage extends Component {
               opacity: ".2"
             }}
           />
-
-          <img
-            src={`/${user.avatar}`}
-            alt="user avatar"
-            className="profile__avatar"
-          />
+          <div className="profile__avatar-container">
+            <img
+              src={`/${user.avatar}`}
+              alt="user avatar"
+              className="profile__avatar"
+            />
+          </div>
 
           <button className="profile__change-avatar-button">Chọn ảnh</button>
         </section>

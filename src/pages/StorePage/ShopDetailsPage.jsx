@@ -1,11 +1,17 @@
 import React, { Component } from "react";
+import StoreDetailHeader from "./StoreDetailHeader";
+import StoreDetailDescription from "./StoreDetailDescription";
+import StoreDetailProductCard from "./StoreDetailProductCard";
+
+import productImg_sample from "../../img/product-img-sample.png";
 import callApi from "../../utils/callApi";
 
 class ShopDetailsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      products: []
+      products: [],
+      info: {}
     };
   }
   componentDidMount() {
@@ -15,18 +21,33 @@ class ShopDetailsPage extends Component {
         products: res.data
       });
     });
+    callApi(`stores/${match.params.slug}`).then(res => {
+      this.setState({
+        info: res.data
+      });
+    });
   }
   render() {
-    const { products } = this.state;
+    const { products, info } = this.state;
+    console.log(info);
+
     return (
       <div>
-        {products.map((product, index) => (
-          <div key={index}>
-            <h1>{product.name}</h1>
-            <h1>{product.image}</h1>
-            <h1>{product.price}</h1>
-          </div>
-        ))}
+        <StoreDetailHeader info={info} />
+        <StoreDetailDescription info={info} />
+
+        <p className="store__big-title">Sản Phẩm</p>
+
+        <div className="store__product--sprout">
+          {products.map((product, index) => (
+            <StoreDetailProductCard
+              key={index}
+              img={`/${product.image}`}
+              productName={product.name}
+              price={product.price}
+            />
+          ))}
+        </div>
       </div>
     );
   }

@@ -1,35 +1,32 @@
-import React, { Component } from 'react';
-import callApi from '../../utils/callApi';
+import React, { Component } from "react";
+import callApi from "../../utils/callApi";
+import StoreDetailHeader from "./StoreDetailHeader";
+import StoreDetailDescription from "./StoreDetailDescription";
 
 class ServiceDetailsPage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-          products: []
-        };
-      }
-      componentDidMount() {
-        const { match } = this.props;
-        callApi(`stores/${match.params.slug}/product`).then(res => {
-          this.setState({
-            products: res.data
-          });
-        });
-      }
-      render() {
-        const { products } = this.state;
-        return (
-          <div>
-            {products.map((product, index) => (
-              <div key={index}>
-                <h1>{product.name}</h1>
-                <h1>{product.image}</h1>
-                <h1>{product.price}</h1>
-              </div>
-            ))}
-          </div>
-        );
-     }
+  constructor(props) {
+    super(props);
+    this.state = {
+      info: []
+    };
+  }
+  componentDidMount() {
+    const { match } = this.props;
+    callApi(`stores/${match.params.slug}`).then(res => {
+      this.setState({
+        info: res.data
+      });
+    });
+  }
+  render() {
+    const { info } = this.state;
+    return (
+      <div>
+        <StoreDetailHeader info={info} />
+        <StoreDetailDescription info={info} />
+      </div>
+    );
+  }
 }
 
 export default ServiceDetailsPage;

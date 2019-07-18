@@ -9,7 +9,7 @@ import blue_paw from "../../img/paw.png";
 const ListItem = ({ service }) => {
   return (
     <div className="info--service">
-      <img src={shop_img} alt="shopPhoto" className="info--image" />
+      <img src={`/${service.avatar}`} alt="shopPhoto" className="info--image" />
       <div className="info__text-container">
         <div className="info__text-container--title">{service.name}</div>
         <div className="info__text-container--address">

@@ -1,0 +1,177 @@
+.store {
+    &__header {
+        position: relative;
+
+        &--img {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            clip-path: polygon(50% 0%, 100% 0, 100% 100%, 36% 100%, 28% 86%, 0 86%, 0 0); 
+        }
+        
+
+        &--title {
+            position: absolute;
+            z-index: 1;
+            bottom: .2%;
+            height: 14vh;
+            width: 80vh;
+
+        }
+
+        &--avatar {
+            position: absolute;
+            height: 13.5rem;
+            width: 13.5rem;
+            top: 10%;
+            left: 8%;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        &--storeName {
+            position: absolute;
+            font-size: 5rem;
+            max-width: 100%;
+            height: auto;
+            width: 50%;
+            font-weight: bold;
+            top: 17%;
+            right: 17%;
+            color: $color-black;
+        }
+    }
+
+    &__description {
+        position: relative;
+        margin: 7rem 5rem;
+        height: 37rem;
+
+        &--general {
+            position: relative;
+            display: inline-block;
+            height: 100%;
+            width: 27.5%;
+            margin-right: 2rem;
+            border-radius: 2.2rem;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            background-color: #ffffff;
+
+            &--left {
+                position: absolute;
+                width: 50%;
+                height: 90%;;
+            }
+
+            &--right {
+                position: absolute;
+                right: 0;
+                width: 50%;
+                height: 90%;
+            }
+        }
+
+        &--paragraph {
+            position: relative;
+            display: inline-block;
+            background-color: red;
+            height: 100%;
+            width: 70.7%;
+            border-radius: 2.2rem;
+            box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
+            background-color: #ffffff;
+        }
+
+        &--attribute {
+            margin: 2.9rem 4rem 2.9rem 5.6rem;
+            font-size: 2.4rem;
+            font-weight: bold;
+            color: #2a2a2a;
+        }
+
+        &--value {
+            margin: 2.9rem 4rem 2.9rem 5.6rem;
+            font-size: 2.4rem;
+            color: #2a2a2a;
+        }
+
+        &--intro {
+            position: absolute;
+            left: 3rem;
+            top: 1rem;
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2a2a2a;
+        }
+        
+        &--list {
+            position: absolute;
+            top: 25%;
+            left: 4.5%;
+            font-size: 2.4rem;
+            font-weight: 100;
+            color: #2a2a2a;
+        }
+    }
+    
+    &__big-title {
+        position: relative;
+        font-size: 6.6rem;
+        font-weight: bold;
+        text-decoration: underline;
+        color: #2a2a2a;
+        left: 42%;
+    }
+
+    &__product {
+        
+        &--sprout {
+            position: relative;
+            padding: 5rem 43rem;
+            height: auto;
+        }
+
+        &--card {
+            position: relative;
+            display: inline-block;
+            width: 19%;
+            height: 28.5rem;
+            margin-left: 5%; 
+            margin-bottom: 6%;
+            box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
+            background-color: #ffffff;
+
+            &--img {
+                position: absolute;
+                padding: 0;
+                max-width: 100%;
+                height: auto;
+            }
+
+            &--productName {
+                position: absolute;
+                display: inline-block;
+                padding: 0;
+                width: auto;
+                top: 63%;
+                font-size: 1vw;
+                color: #2a2a2a;
+                text-align: center;
+    
+            }
+
+            &--price {
+                position: absolute;
+                display: inline-block;
+                word-wrap: break-word;
+                width: 90%;
+                bottom: 1%;
+                left: 10%;
+                font-size: 1vw;
+                color: #ff0000;
+            }
+        }
+
+        
+    }
+}
