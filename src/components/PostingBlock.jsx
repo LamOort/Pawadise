@@ -23,7 +23,6 @@ class PostingBlock extends Component {
       [name]: value
     });
   };
-  v;
 
   onSubmit = e => {
     e.preventDefault();
@@ -31,11 +30,13 @@ class PostingBlock extends Component {
     const bodyFormData = new FormData();
     bodyFormData.set("body", message);
     bodyFormData.append("photos", photos);
-    this.props.onAddNew(bodyFormData);
-    this.setState({
-      message: "",
-      photos: ""
-    });
+    if (message.length > 0) {
+      this.props.onAddNew(bodyFormData);
+      this.setState({
+        message: "",
+        photos: ""
+      });
+    }
   };
   render() {
     return (

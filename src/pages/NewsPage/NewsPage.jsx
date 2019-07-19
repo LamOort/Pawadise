@@ -3,46 +3,64 @@ import { Link } from "react-router-dom";
 import SeparationLine from "../../components/SeparationLine";
 import PostingBlock from "../../components/PostingBlock";
 import { connect } from "react-redux";
-import { actGetAllNewsRequest } from "../../actions/index";
+import {
+  actGetAllNewsRequest,
+  actAddCommentsRequest,
+  actLikeRequest
+} from "../../actions/index";
 
 import full_bg from "../../img/bg-full.png";
 import avatar from "../../img/user-avatar-sample.png";
 import postedImg from "../../img/img-posted-sample.png";
 import likeIcon from "../../img/like-icon.svg";
 import commentIcon from "../../img/comment-icon.svg";
-import callApi from "../../utils/callApi";
 
 class NewsPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       likesQuantity: 0,
-      updated: false
+      updated: false,
+      comment: ""
     };
   }
-  isLike = item => {
+
+  onChange = e => {
+    let target = e.target;
+    let name = target.name;
+    let value = target.value;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  isLike = id => {
     const { isAuthenticated } = this.props.auth;
     if (isAuthenticated) {
-      callApi(`posts/${item._id}/like`, "POST", null).then(res => {
-        if (!this.state.updated) {
-          this.setState({
-            likesQuantity: res.data.likesQuantity,
-            updated: true
-          });
-        } else {
-          this.setState({
-            likesQuantity: item.likesQuantity - 1,
-            updated: false
-          });
-        }
-      });
+      this.props.isLike(id);
     } else {
       alert("Bạn cần phải đăng nhập để thực hiện chức năng này!!!");
     }
   };
+
+  onComment = (id, comment) => {
+    const { isAuthenticated } = this.props.auth;
+    if (isAuthenticated) {
+      if (comment.length > 0) {
+        this.props.onComment(id, comment);
+        this.setState({
+          comment: ""
+        });
+      }
+    } else {
+      alert("Bạn cần phải đăng nhập để thực hiện chức năng này!!!");
+    }
+  };
+
   componentDidMount() {
     this.props.getAllNews();
   }
+
   render() {
     const { news } = this.props;
     const { isAuthenticated } = this.props.auth;
@@ -113,7 +131,7 @@ class NewsPage extends Component {
               <div className="news__display--like-comment-button">
                 <button
                   className="news__display--like-button"
-                  onClick={() => this.isLike(item)}
+                  onClick={() => this.isLike(item._id)}
                 >
                   <img src={likeIcon} alt="like button" />
                 </button>
@@ -139,8 +157,11 @@ class NewsPage extends Component {
                   />
 
                   <div className="news__display--comment-content">
-                    <Link className="news__display--userName">
-                      {cmt.commentsAuthor}
+                    <Link
+                      className="news__display--userName"
+                      to={`/profile/${cmt.commentsAuthor}`}
+                    >
+                      {cmt.authorName}
                     </Link>
 
                     <p className="news__display--comment-text">{cmt.body}</p>
@@ -166,10 +187,15 @@ class NewsPage extends Component {
                     className="news__display--comment-input-box"
                     type="text"
                     name="comment"
+                    value={this.state.comment}
+                    onChange={this.onChange}
                   />
                 </div>
 
-                <button className="news__display--comment-action-button">
+                <button
+                  className="news__display--comment-action-button"
+                  onClick={() => this.onComment(item._id, this.state.comment)}
+                >
                   Bình luận
                 </button>
               </div>
@@ -192,6 +218,12 @@ const mapDispatchToProps = (dispatch, props) => {
   return {
     getAllNews: () => {
       dispatch(actGetAllNewsRequest());
+    },
+    onComment: (id, comment) => {
+      dispatch(actAddCommentsRequest(id, comment));
+    },
+    isLike: id => {
+      dispatch(actLikeRequest(id));
     }
   };
 };

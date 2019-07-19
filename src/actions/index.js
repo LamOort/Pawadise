@@ -35,18 +35,35 @@ export const actAddNew = new1 => {
   };
 };
 
-export const actAddCommentsRequest = (id, new_cmt) => {
+export const actAddCommentsRequest = (id, new_cmt) => {  
   return dispatch => {
-    return callApi(`posts/${id}`, "POST", { comment: new_cmt }).then(res => {
-      dispatch(actAddComment());
+    return callApi(`posts/${id}`, "POST", { comment: new_cmt }).then(res => {      
+      dispatch(actAddComment(res.data,res.data.comments));
     });
   };
 };
 
-export const actAddComment = comment => {
+export const actAddComment = (newC,comments) => {
   return {
     type: Types.ADD_COMMENTS,
-    comment
+    newC,
+    comments
+  };
+};
+
+export const actLikeRequest = id => {  
+  return dispatch => {
+    return callApi(`posts/${id}/like`, "POST", null).then(res => {      
+      dispatch(actLike(res.data,res.data.likesQuantity));
+    });
+  };
+};
+
+export const actLike = (newL,likesQuantity) => {
+  return {
+    type: Types.LIKE_NEWS,
+    newL,
+    likesQuantity
   };
 };
 
@@ -79,3 +96,17 @@ export const actLogoutUser = () => dispatch => {
   dispatch(setCurrentUser({}));
 };
 
+export const actEditProfileRequest = (user) => {
+  return dispatch => {
+    return callApi("users/me","PATCH",user).then(res => {
+      dispatch(actEditProfile(res.data));
+    })
+  }
+}
+
+export const actEditProfile = user => {
+  return {
+    type: Types.EDIT_PROFILE,
+    user
+  }
+}
