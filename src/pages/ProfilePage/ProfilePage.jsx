@@ -23,7 +23,7 @@ class ProfilePage extends Component {
         name: user.name,
         email: user.email,
         age: user.age,
-        phone: "",
+        phone: user.phoneNumber,
         avatar: user.avatar
       });
     }
@@ -41,11 +41,12 @@ class ProfilePage extends Component {
   onSave = e => {
     e.preventDefault();
     alert("Chỉnh sửa thông tin thành công ^-^");
-    const { name, email, age, avatar } = this.state;
+    const { name, email, age, phone, avatar } = this.state;
     const user = {
       name: name,
       email: email,
       age: age,
+      phone: phone,
       avatar: avatar
     };
     this.props.onUpdateProfile(user);
@@ -53,7 +54,7 @@ class ProfilePage extends Component {
 
   render() {
     // const { user } = this.props.auth;
-    const { name, email, age, avatar } = this.state;
+    const { name, email, age, phone, avatar } = this.state;
 
     return (
       <main>
@@ -125,6 +126,7 @@ class ProfilePage extends Component {
                   placeholder="Giúp chúng tôi giữ liên lạc"
                   name="phoneNumber"
                   onChange={this.onChange}
+                  value={phone}
                 />
               </div>
             </div>
@@ -167,10 +169,7 @@ class ProfilePage extends Component {
             />
           </div>
 
-          <input
-            type="file"
-            className="profile__change-avatar-button"
-          />
+          <input type="file" className="profile__change-avatar-button" />
         </section>
       </main>
     );

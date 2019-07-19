@@ -8,7 +8,7 @@ import blue_paw from "../../img/paw.png";
 const ListItem = ({ service }) => {
   return (
     <div className="info--service">
-      <img src={`/${service.avatar}`} alt="shopPhoto" className="info--image" />
+      <img src={`http://pawadise.cf:3000/${service.avatar}`} alt="shopPhoto" className="info--image" />
       <div className="info__text-container">
         <div className="info__text-container--title">{service.name}</div>
         <div className="info__text-container--address">
@@ -31,7 +31,7 @@ class ServicePage extends Component {
       services: []
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     callApi("service", "GET", null).then(res => {
       this.setState({
         services: res.data
