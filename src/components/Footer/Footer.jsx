@@ -26,14 +26,14 @@ class Footer extends Component {
           <div className="footer__icon">
             <i className="fas fa-map-marker-alt fa-fw fa-2x" />
             &nbsp;
-            <a className="footer__link footer__link--unclickable" href>
+            <a className="footer__link footer__link--unclickable" href="#">
               70 Phan Thanh, Đà Nẵng
             </a>
           </div>
           <div className="footer__icon">
             <i className="fas fa-phone-square-alt fa-fw fa-2x" />
             &nbsp;
-            <a className="footer__link footer__link--unclickable" href>
+            <a className="footer__link footer__link--unclickable" href="#">
               +84 783 798 563
             </a>
           </div>

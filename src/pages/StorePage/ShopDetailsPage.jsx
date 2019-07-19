@@ -3,7 +3,6 @@ import StoreDetailHeader from "./StoreDetailHeader";
 import StoreDetailDescription from "./StoreDetailDescription";
 import StoreDetailProductCard from "./StoreDetailProductCard";
 
-import productImg_sample from "../../img/product-img-sample.png";
 import callApi from "../../utils/callApi";
 
 class ShopDetailsPage extends Component {
@@ -11,7 +10,9 @@ class ShopDetailsPage extends Component {
     super(props);
     this.state = {
       products: [],
-      info: {}
+      info: {},
+      photos: {},
+      description: []
     };
   }
   componentDidMount() {
@@ -23,18 +24,19 @@ class ShopDetailsPage extends Component {
     });
     callApi(`stores/${match.params.slug}`).then(res => {
       this.setState({
-        info: res.data
+        info: res.data,
+        photos: res.data.photos,
+        description: res.data.description
       });
     });
   }
   render() {
-    const { products, info } = this.state;
-    console.log(info);
+    const { products, info, photos, description } = this.state;
 
     return (
       <div>
-        <StoreDetailHeader info={info} />
-        <StoreDetailDescription info={info} />
+        <StoreDetailHeader info={info} photos={photos[0]} />
+        <StoreDetailDescription info={info} description={description} />
 
         <p className="store__big-title">Sản Phẩm</p>
 
@@ -42,7 +44,7 @@ class ShopDetailsPage extends Component {
           {products.map((product, index) => (
             <StoreDetailProductCard
               key={index}
-              img={`/${product.image}`}
+              img={`https://pawadise.s3.ap-east-1.amazonaws.com/${product.image}`}
               productName={product.name}
               price={product.price}
             />

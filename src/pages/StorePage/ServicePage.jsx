@@ -3,7 +3,6 @@ import callApi from "../../utils/callApi";
 import { Link } from "react-router-dom";
 
 import full_bg from "../../img/bg-full.png";
-import shop_img from "../../img/shop.png";
 import blue_paw from "../../img/paw.png";
 
 const ListItem = ({ service }) => {
@@ -13,7 +12,8 @@ const ListItem = ({ service }) => {
       <div className="info__text-container">
         <div className="info__text-container--title">{service.name}</div>
         <div className="info__text-container--address">
-          Địa chỉ: {service.address}
+          Địa chỉ:
+          {service.address.map((item, index) => <li key={index}>{item}</li>)}
         </div>
       </div>
 
@@ -33,7 +33,6 @@ class ServicePage extends Component {
   }
   componentWillMount() {
     callApi("service", "GET", null).then(res => {
-      console.log(res);
       this.setState({
         services: res.data
       });
