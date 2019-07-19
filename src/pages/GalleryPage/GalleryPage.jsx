@@ -1,22 +1,38 @@
 import React, { Component } from "react";
 import callApi from "../../utils/callApi";
-
-import galleryImg_sample from "../../img/gallery-img-sample.png";
-
 class GalleryPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: []
+      image: [],
+      page: 1,
+      isOpen: false
     };
   }
+
   onChangeKey = key => {
-    callApi(`gallery/${key}?page=1`, "GET", null).then(res => {
+    let img = [];
+    const { page } = this.state;
+    callApi(`gallery/${key}?page=${page}`, "GET", null).then(res => {
+      img.push(res.data);
       this.setState({
         image: res.data
       });
     });
   };
+
+  loadMore = e => {
+    e.preventDefault();
+    this.setState(prev => {
+      return { page: prev.page + 1 };
+    });
+  };
+
+  handleShowDialog = () => {
+    this.setState({ isOpen: !this.state.isOpen });
+    console.log("cliked");
+  };
+
   componentWillMount() {
     callApi("gallery/pet?page=1", "GET", null).then(res => {
       this.setState({
@@ -80,8 +96,33 @@ class GalleryPage extends Component {
                   alt="gallery-displayed"
                   className="gallery__image--displayed"
                 />
+
+                {/* <img
+                  className="small"
+                  src={item.link}
+                  onClick={this.handleShowDialog}
+                  alt="no image"
+                />
+                {this.state.isOpen && (
+                  <dialog
+                    className="dialog"
+                    style={{ position: "absolute" }}
+                    open
+                    onClick={this.handleShowDialog}
+                  >
+                    <img
+                      className="image"
+                      src={item.link}
+                      onClick={this.handleShowDialog}
+                      alt="no image"
+                    />
+                  </dialog>
+                )} */}
               </div>
             ))}
+            <button className="gallery__sort-button" onClick={this.loadMore}>
+              Load More
+            </button>
           </div>
         </section>
       </main>

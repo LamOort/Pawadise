@@ -51,8 +51,13 @@ class LoginForm extends Component {
   };
 
   keyPressed = e => {
-    if (e.keyCode == 13) {
-      this.onHandleLogin();
+    if (e.keyCode === 13) {
+      e.preventDefault();
+      const { username, password } = this.state;
+      const { closePopup } = this.props;
+      const user = { username: username, password: password };
+      this.props.actLoginUser(user);
+      closePopup();
     }
   };
 

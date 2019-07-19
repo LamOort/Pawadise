@@ -3,32 +3,32 @@
 
     &__title {
         position: relative;
-        left: 27.8rem;
+        left: 7vw;
         color: #ec1010;
-        font-size: 4rem;
+        font-size: 2vw;
         font-weight: 400;
         text-align: left;
     }
 
     &__form {
-        position: relative;
+        padding: 0 2vw;
         display: grid;
-        padding: 0 10%;
         grid-template-columns: auto auto;
         justify-content: space-around;
         margin: 7rem 0;
     }
 
     &__left {
-        display: inline-block;
+        position: relative;
         margin-left: 4%;
-        max-width: 50%;
+        width: 40vw;
     }
     
     &__right {
-        display: inline-block;
+        position: relative;
         height: 46rem;
-        width: 50rem;
+        width: 50vw;
+        min-width: 20vw;
         transform: translateY(-5.5xrem);
         
         &--title {
@@ -102,20 +102,20 @@
 
     &__submit {
         position: relative;
-        padding: 15rem 0;
+        padding: 10rem 0;
         
 
         &--btn {
             position: absolute;
-            top:50%;
+            top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
-            width: 12.6rem;
-            height: 6rem;
+            transform: translate(100%, 0%);
+            width: 9vw;
+            height: 6.5vh;
             border-radius: 2.3rem;
             box-shadow: 0 .3rem .6rem 0 rgba(0, 0, 0, 0.16);
             background-color: #ff5836;
-            font-size: 3rem;
+            font-size: 2vw;
             color: $color-white;
             cursor: pointer;
             text-align: center;

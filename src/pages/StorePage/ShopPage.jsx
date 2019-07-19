@@ -6,15 +6,19 @@ import full_bg from "../../img/bg-full.png";
 import blue_paw from "../../img/paw.png";
 
 const ListItem = ({ shop }) => {
+  
   return (
     <div className="info--shop">
       <div className="info__image--sprout">
-        <img src={`/${shop.avatar}`} alt="shopPhoto" className="info__image--displayed" />
+        <img src={`http://pawadise.cf:3000/${shop.avatar}`} alt="shopPhoto" className="info__image--displayed" />
       </div>
       
       <div className="info__text-container">
         <p className="info__text-container--title">{shop.name}</p>
-        <p className="info__text-container--address">Địa chỉ: {shop.address}</p>
+        <p className="info__text-container--address">
+          Địa chỉ:
+          {shop.address.map((item, index) => <li key={index}>{item}</li>)}
+        </p>
       </div>
 
       <button className="btn__action">
@@ -33,7 +37,7 @@ class ShopPage extends Component {
   }
   componentWillMount() {
     callApi("shop", "GET", null).then(res => {
-      console.log(res);
+      // console.log(res);
       this.setState({
         shops: res.data
       });

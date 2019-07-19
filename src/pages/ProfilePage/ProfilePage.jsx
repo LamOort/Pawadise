@@ -2,10 +2,58 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 
 import SeparationLine from "../../components/SeparationLine";
+import { actEditProfileRequest } from "../../actions";
 
 class ProfilePage extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      name: "",
+      email: "",
+      age: "",
+      phone: "",
+      avatar: ""
+    };
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps && nextProps.auth.user) {
+      var { user } = nextProps.auth;
+      this.setState({
+        name: user.name,
+        email: user.email,
+        age: user.age,
+        phone: "",
+        avatar: user.avatar
+      });
+    }
+  }
+
+  onChange = e => {
+    var target = e.target;
+    var name = target.name;
+    var value = target.value;
+    this.setState({
+      [name]: value
+    });
+  };
+
+  onSave = e => {
+    e.preventDefault();
+    alert("Chỉnh sửa thông tin thành công ^-^");
+    const { name, email, age, avatar } = this.state;
+    const user = {
+      name: name,
+      email: email,
+      age: age,
+      avatar: avatar
+    };
+    this.props.onUpdateProfile(user);
+  };
+
   render() {
-    const { user } = this.props.auth;
+    // const { user } = this.props.auth;
+    const { name, email, age, avatar } = this.state;
 
     return (
       <main>
@@ -31,7 +79,8 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Quý danh"
                   name="name"
-                  value={user.name}
+                  value={name}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -45,7 +94,8 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Bạn bao nhiêu nồi bánh chưng rồi"
                   name="age"
-                  value={user.age}
+                  value={age}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -59,7 +109,8 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Email"
                   name="email"
-                  value={user.email}
+                  value={email}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -73,7 +124,7 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Giúp chúng tôi giữ liên lạc"
                   name="phoneNumber"
-                  value={user.username}
+                  onChange={this.onChange}
                 />
               </div>
             </div>
@@ -87,11 +138,14 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Bạn nhà ở đâu thế ?"
                   name="address"
+                  onChange={this.onChange}
                 />
               </div>
             </div>
 
-            <button className="profile__save-button">Lưu</button>
+            <button className="profile__save-button" onClick={this.onSave}>
+              Lưu
+            </button>
           </div>
 
           <div
@@ -107,12 +161,16 @@ class ProfilePage extends Component {
           />
           <div className="profile__avatar-container">
             <img
-              src={`/${user.avatar}`}
+              src={`http://pawadise.cf:3000/${avatar}`}
               alt="user avatar"
               className="profile__avatar"
             />
           </div>
 
+          <input
+            type="file"
+            className="profile__change-avatar-button"
+          />
         </section>
       </main>
     );
@@ -123,7 +181,15 @@ const mapStateToProps = state => ({
   auth: state.auth
 });
 
+const mapDispatchToProps = (dispatch, props) => {
+  return {
+    onUpdateProfile: user => {
+      dispatch(actEditProfileRequest(user));
+    }
+  };
+};
+
 export default connect(
   mapStateToProps,
-  null
+  mapDispatchToProps
 )(ProfilePage);

@@ -19,10 +19,9 @@
     &__sort-list {
         position: relative;
         display: grid;
-        grid-template-columns: auto auto auto auto;
-        height: 5.4rem;
-        width: 100%;
         padding: 0 20%;
+        grid-template-columns: auto auto auto auto;
+        height: 7rem;
         justify-content: space-evenly;
     }
 
@@ -30,12 +29,12 @@
         display: inline-block;
         width: 18rem;
         max-width: 100%;
-        height: auto;
+        height: 6vh;
         border-radius: 2.4rem;
         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
         border: solid .1rem rgba(112, 112, 112, 0.38);  
         background-color: #f1f1f1;
-        font-size: 3vh;
+        font-size: 3.4vh;
         font-weight: bold;
         color: #2a2a2a;
         cursor: pointer;
@@ -46,6 +45,7 @@
     }
 
     &__dropdown {
+        width: 18rem;
         &:hover .gallery__dropdown-content {
             display: block;
         }
@@ -69,7 +69,7 @@
         padding: 1rem 0;
         margin: 1rem 0;
         font-weight: bold;
-        font-size: 2rem;
+        font-size: 1.7vh;
         border-radius: 2rem;
         width: 100%;
         display: block;
@@ -96,8 +96,8 @@
             position: relative;
             display: inline-block;
             margin-bottom: 7rem;
-            width: 35rem;
-            height: 35rem;
+            width: 30rem;
+            height: 30rem;
             overflow: hidden;
         }
 
