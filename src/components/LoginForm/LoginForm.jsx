@@ -1,6 +1,7 @@
 import React, { Component } from "react";
-import setAuthorizationToken from "../../utils/setAuthorizationToken";
 import callApi from "../../utils/callApi";
+import { connect } from "react-redux";
+import { actLoginUser } from "../../actions/index";
 
 class LoginForm extends Component {
   constructor(props) {
@@ -26,19 +27,10 @@ class LoginForm extends Component {
   onHandleLogin = e => {
     e.preventDefault();
     const { username, password } = this.state;
-    const { closePopup,loggedIn } = this.props;
-    callApi("login", "POST", {
-      username: username,
-      password: password
-    }).then(res => {
-      if (res.status === 202) {
-        const token = res.data.token;
-        localStorage.setItem("jwtToken", token);
-        setAuthorizationToken(token);
-        loggedIn();
-        closePopup();
-      }
-    });
+    const { closePopup } = this.props;
+    const user = { username: username, password: password };
+    this.props.actLoginUser(user);
+    closePopup();
   };
 
   onHandleRegister = e => {
@@ -57,6 +49,13 @@ class LoginForm extends Component {
       }
     });
   };
+
+  keyPressed = e => {
+    if (e.keyCode == 13) {
+      this.onHandleLogin();
+    }
+  };
+
   render() {
     var { isAccount } = this.state;
     var title = isAccount ? "Đăng nhập" : "Đăng ký";
@@ -71,6 +70,7 @@ class LoginForm extends Component {
               type="text"
               placeholder="Tên đăng nhập"
               onChange={this.onChange}
+              onKeyDown={this.keyPressed}
               name="username"
               required
             />
@@ -85,6 +85,7 @@ class LoginForm extends Component {
               type="password"
               placeholder="Mật khẩu"
               onChange={this.onChange}
+              onKeyDown={this.keyPressed}
               name="password"
               required
             />
@@ -176,4 +177,11 @@ class LoginForm extends Component {
   }
 }
 
-export default LoginForm;
+const mapStateToProps = state => ({
+  auth: state.auth
+});
+
+export default connect(
+  mapStateToProps,
+  { actLoginUser }
+)(LoginForm);

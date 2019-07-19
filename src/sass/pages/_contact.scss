@@ -12,21 +12,23 @@
 
     &__form {
         position: relative;
+        display: grid;
         padding: 0 10%;
+        grid-template-columns: auto auto;
+        justify-content: space-around;
         margin: 7rem 0;
     }
 
     &__left {
         display: inline-block;
-        margin-left: 4.5%;
+        margin-left: 4%;
         max-width: 50%;
     }
     
     &__right {
         display: inline-block;
-        position: absolute;
-        margin-left: 7%;
-        max-width: 30%;
+        height: 46rem;
+        width: 50rem;
         transform: translateY(-5.5xrem);
         
         &--title {

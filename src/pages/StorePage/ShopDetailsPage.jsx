@@ -1,35 +1,55 @@
-import React, { Component } from 'react';
-import StoreDetailHeader from './StoreDetailHeader';
-import StoreDetailDescription from './StoreDetailDescription';
-import StoreDetailProductCard from './StoreDetailProductCard';
+import React, { Component } from "react";
+import StoreDetailHeader from "./StoreDetailHeader";
+import StoreDetailDescription from "./StoreDetailDescription";
+import StoreDetailProductCard from "./StoreDetailProductCard";
 
-import productImg_sample from '../../img/product-img-sample.png';
+import callApi from "../../utils/callApi";
 
 class ShopDetailsPage extends Component {
-    render() {
-        return (
-            <div>
-                <StoreDetailHeader/>
-                <StoreDetailDescription/>
+  constructor(props) {
+    super(props);
+    this.state = {
+      products: [],
+      info: {}
+    };
+  }
+  componentDidMount() {
+    const { match } = this.props;
+    callApi(`stores/${match.params.slug}/product`).then(res => {
+      this.setState({
+        products: res.data
+      });
+    });
+    callApi(`stores/${match.params.slug}`).then(res => {
+      this.setState({
+        info: res.data
+      });
+    });
+  }
+  render() {
+    const { products, info } = this.state;
+    console.log(info);
 
-                <p className="store__big-title">Sản Phẩm</p>
-                
-                <div className="store__product--sprout">
-                    <StoreDetailProductCard img={productImg_sample} productName={`Đồ ăn dành cho thú cưng`} price={`200.000`} />
-                    <StoreDetailProductCard img={productImg_sample} productName={`Đồ ăn dành cho thú cưng`}  price={`200.000`}/>
-                    <StoreDetailProductCard img={productImg_sample} productName={`Đồ ăn dành cho thú cưng`}  price={`200.000`}/>
-                    <StoreDetailProductCard img={productImg_sample} productName={`Đồ ăn dành cho thú cưng`}  price={`200.000`}/>
-                    <StoreDetailProductCard img={productImg_sample} productName={`Đồ ăn dành cho thú cưng`}  price={`200.000`}/>
-                    <StoreDetailProductCard img={productImg_sample} productName={`Đồ ăn dành cho thú cưng`}  price={`200.000`}/>
-                    <StoreDetailProductCard img={productImg_sample} productName={`Đồ ăn dành cho thú cưng`}  price={`200.000`}/>
-                    <StoreDetailProductCard img={productImg_sample} productName={`Đồ ăn dành cho thú cưng`}  price={`200.000`}/>
-                    <StoreDetailProductCard img={productImg_sample} productName={`Đồ ăn dành cho thú cưng`}  price={`200.000`}/>
+    return (
+      <div>
+        <StoreDetailHeader info={info} />
+        <StoreDetailDescription info={info} />
 
+        <p className="store__big-title">Sản Phẩm</p>
 
-                </div>
-            </div>
-        );
-    }
+        <div className="store__product--sprout">
+          {products.map((product, index) => (
+            <StoreDetailProductCard
+              key={index}
+              img={`/${product.image}`}
+              productName={product.name}
+              price={product.price}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  }
 }
 
 export default ShopDetailsPage;

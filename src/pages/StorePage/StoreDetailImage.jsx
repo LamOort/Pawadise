@@ -4,7 +4,7 @@ class StoreDetailImage extends Component {
     render() {
         return(
             <div className="store__serviceImage--sprout">
-                <img src={this.props.img} alt="service-image" className="store__serviceImage--image"/>
+                <img src={this.props.img} alt="service-detail" className="store__serviceImage--image"/>
             </div>
         );
     }

@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API_URL = 'http://localhost:3000';
+const API_URL = 'http://pawadise.cf:3000';
+// const API_URL = 'http://localhost:3000';
 export default function callApi(endpoint, method = 'GET', body){
     return axios({
         method: method,
