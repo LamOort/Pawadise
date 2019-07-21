@@ -10,9 +10,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="page__container">
+          <Logo />  
           <Nav />
-          <Logo />
           {this.showContent(routes)}
           <Footer />
         </div>

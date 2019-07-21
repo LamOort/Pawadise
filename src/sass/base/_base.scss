@@ -11,14 +11,21 @@ html {
   font-size: 62.5%;
   overflow: scroll; 
   overflow-x: hidden;
+  
 }
 
 
 
 body {
   box-sizing: border-box;
-
+  position: relative;
   @include respond(tab-port) {
     padding: 0;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    height: 27rem; /* Set same as footer's height */
   }
 }
