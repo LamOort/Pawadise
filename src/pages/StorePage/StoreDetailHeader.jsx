@@ -1,4 +1,6 @@
-import React, { Component } from "react";
+import React, { Component } from 'react';
+
+
 class StoreDetailHeader extends Component {
   render() {
     const { info,photos } = this.props;

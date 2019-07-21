@@ -94,12 +94,21 @@ class GalleryPage extends Component {
               Mèo
             </button>
 
-            <button
-              className="gallery__sort-button"
-              onClick={() => this.onChangeKey("hamster")}
-            >
+            <div className="gallery__dropdown">
+              <button
+              className="gallery__sort-button gallery__drop-btn"
+              
+              >
               Khác
-            </button>
+              </button>
+
+              <div class="gallery__dropdown-content">
+                <button className="gallery__dropdown-btn" onClick={() => this.onChangeKey("hamster")}>Hamster</button>
+                <button className="gallery__dropdown-btn" onClick={() => this.onChangeKey("rabbit")}>Thỏ</button>
+                <button className="gallery__dropdown-btn" onClick={() => this.onChangeKey("hedgehog")}>Nhím</button>
+              </div>
+            </div>
+            
           </div>
 
           <div className="gallery__image--collection" ref="iScroll">

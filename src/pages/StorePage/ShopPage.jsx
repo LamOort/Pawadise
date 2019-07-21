@@ -9,7 +9,10 @@ const ListItem = ({ shop }) => {
   
   return (
     <div className="info--shop">
-      <img src={`http://pawadise.cf:3000/${shop.avatar}`} alt="shopPhoto" className="info--image" />
+      <div className="info__image--sprout">
+        <img src={`http://pawadise.cf:3000/${shop.avatar}`} alt="shopPhoto" className="info__image--displayed" />
+      </div>
+      
       <div className="info__text-container">
         <p className="info__text-container--title">{shop.name}</p>
         <p className="info__text-container--address">
@@ -19,7 +22,7 @@ const ListItem = ({ shop }) => {
       </div>
 
       <button className="btn__action">
-        Đánh giá
+        Chi tiết
         <img src={blue_paw} alt="paw_icon" className="btn__action--paw" />
       </button>
     </div>

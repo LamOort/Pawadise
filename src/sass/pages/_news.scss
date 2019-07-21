@@ -88,10 +88,10 @@
             width: 8rem;
 
             &-small {
-                top: 1%;
-                left: 6%;
-                height: 5.5rem;
-                width: 5.5rem;
+                top: 9%;
+                left: 2%;
+                height: 3vw;
+                width: 3vw;
             }
         }
 
@@ -198,6 +198,7 @@
             height: auto;
             max-height: 30rem;
             margin-bottom: 4rem;
+            overflow: hidden;
         }
 
         &--comment-content {
@@ -205,22 +206,20 @@
             height: auto;
             overflow-x: hidden;
             overflow-y: scroll;
-            min-height: 10rem;
-            width: auto;
-            max-width: 65%;
+            min-height: 7rem;
+            width: 45vw;
             margin-bottom: 3rem;
             background: repeat-x scroll center top transparent;
-            left: 20rem;
-            height: 40px;
-            border-radius: 20px;
+            left: 7vw;
+            border-radius: 2rem;
             background-color: #f3f3f3;
         }
 
         &--userName {
             position: absolute;
-            top: 2%;
-            left: 5%;
-            font-size: 1.8rem;
+            top: 30%;
+            left: 1%;
+            font-size: 1vw;
             font-weight: bold;
             text-decoration: none;
             color: #2e7ba7;
@@ -229,8 +228,9 @@
 
         &--comment-text {
             position: absolute;
-            font-size: 1.8rem;
-            left: 20rem;
+            font-size: 1vw;
+            left: 13vw;
+            word-wrap: break-word
         }
 
         &--comment-action-box {
@@ -265,11 +265,11 @@
 
         &--comment-action-button {
             position: absolute;
-            right: 3.2rem;
-            top: .2rem;
-            height: 5rem;
-            width: 10rem;
-            font-size: 2rem;
+            right: 2%;
+            top: 7%;
+            height: 7vh;
+            width: 5vw;
+            font-size: 1vw;
             border-radius: 3rem;
             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
             background-color: $color-grey-light-2;

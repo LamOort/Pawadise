@@ -5,69 +5,114 @@
         &--img {
             position: relative;
             height: 100vh;
-            width: 100%;
-            clip-path: polygon(50% 0%, 100% 0, 100% 100%, 36% 100%, 28% 86%, 0 86%, 0 0); 
+            width: 100vw;
+            clip-path: polygon(50% 0%, 100% 0, 100% 100%, 42% 100%, 34% 69%, 0 69%, 0 0);
         }
         
 
         &--title {
             position: absolute;
-            z-index: 1;
-            bottom: .2%;
-            height: 14vh;
-            width: 80vh;
+            top: 69%;
+            height: 80vh;
+            width: 97vh;
 
         }
 
         &--avatar {
             position: absolute;
-            height: 13.5rem;
-            width: 13.5rem;
-            top: 10%;
-            left: 8%;
+            height: 15vh;
+            width: 15vh;
+            top: 2%;
+            left: 4%;
             border-radius: 50%;
             object-fit: contain;
         }
 
         &--storeName {
             position: absolute;
-            font-size: 5rem;
+            font-size: 5vh;
             max-width: 100%;
             height: auto;
-            width: 50%;
+            width: 49%;
             font-weight: bold;
-            top: 17%;
-            right: 17%;
+            top: 2%;
+            left: 22%;
             color: $color-black;
         }
     }
 
     &__description {
         position: relative;
-        margin: 7rem 5rem;
-        height: 37rem;
+        display: grid;
+        grid-template-columns: 30% 70%;
+        margin: 7rem 3rem;
+        min-height: 50rem;
+        height: auto;
 
         &--general {
             position: relative;
-            display: inline-block;
-            height: 100%;
-            width: 27.5%;
+            display: grid;
+            grid-template-columns: 50% 50%;
+            height: auto;
+            min-height: 40rem;
+            width: 27vw;
             margin-right: 2rem;
             border-radius: 2.2rem;
             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
             background-color: #ffffff;
 
             &--left {
-                position: absolute;
-                width: 50%;
-                height: 90%;;
+                position: relative;
+                height: auto;
+                min-height: 40rem;
             }
 
             &--right {
+                position: relative;
+                height: auto;
+                min-height: 40rem;
+            }
+        }
+
+
+        &--attribute {
+            position: absolute;
+            font-size: 1.6vw;
+            font-weight: bold;
+            color: #2a2a2a;
+
+            &-1 {
+                top: 1%;
+            }
+
+            &-2 {
+                top: 45%;
+            }
+
+            &-3 {
+                bottom: 2%;
+            }
+        }
+
+        &--value {
+            display: block;
+            font-size: 1.2vw;
+            color: #584c4c;
+
+            &-1 {
                 position: absolute;
-                right: 0;
-                width: 50%;
-                height: 90%;
+                top: 1%;
+
+            }
+
+            &-2 {
+                position: absolute;
+                top: 46%;
+            }
+
+            &-3 {
+                position: absolute;
+                bottom: 2%;
             }
         }
 
@@ -75,24 +120,12 @@
             position: relative;
             display: inline-block;
             background-color: red;
-            height: 100%;
-            width: 70.7%;
+            height: auto;
+            min-height: 40rem;
+            width: 65vw;
             border-radius: 2.2rem;
             box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
             background-color: #ffffff;
-        }
-
-        &--attribute {
-            margin: 2.9rem 4rem 2.9rem 5.6rem;
-            font-size: 2.4rem;
-            font-weight: bold;
-            color: #2a2a2a;
-        }
-
-        &--value {
-            margin: 2.9rem 4rem 2.9rem 5.6rem;
-            font-size: 2.4rem;
-            color: #2a2a2a;
         }
 
         &--intro {
@@ -106,9 +139,13 @@
         
         &--list {
             position: absolute;
+            display: block;
             top: 25%;
             left: 4.5%;
-            font-size: 2.4rem;
+            height: auto;
+            min-height: 30rem;
+            max-width: 100%;
+            font-size: 1.2vw;
             font-weight: 100;
             color: #2a2a2a;
         }
@@ -127,24 +164,26 @@
         
         &--sprout {
             position: relative;
-            padding: 5rem 43rem;
-            height: auto;
+            margin-top: 15rem;
+            padding: 0 14%;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            justify-content: space-evenly;
         }
 
         &--card {
             position: relative;
-            display: inline-block;
-            width: 19%;
-            height: 28.5rem;
-            margin-left: 5%; 
-            margin-bottom: 6%;
+            width: 20rem;
+            height: 41rem; 
+            margin-bottom: 7rem;
             box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
             background-color: #ffffff;
 
             &--img {
                 position: absolute;
-                padding: 0;
-                max-width: 100%;
+                max-height: 20rem;
+                max-width: 20rem;
+                width: 100%;
                 height: auto;
             }
 
@@ -153,7 +192,7 @@
                 display: inline-block;
                 padding: 0;
                 width: auto;
-                top: 63%;
+                top: 60%;
                 font-size: 1vw;
                 color: #2a2a2a;
                 text-align: center;
@@ -172,6 +211,24 @@
             }
         }
 
-        
+    }
+
+    &__serviceImage {
+
+        &--sprout {
+            position: relative;
+            margin-top: 10rem;
+            display: grid;
+            grid-template-columns: auto auto auto auto;
+            justify-content: space-evenly;
+        }
+
+        &--image {
+            width: 30rem;
+            height: 40rem; 
+            object-fit: cover;
+            margin-bottom: 7rem;
+            box-shadow: 0 3px 8px 0 rgba(0, 0, 0, 0.16);
+        }
     }
 }
