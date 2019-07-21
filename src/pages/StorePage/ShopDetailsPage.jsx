@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+  import React, { Component } from "react";
 import StoreDetailHeader from "./StoreDetailHeader";
 import StoreDetailDescription from "./StoreDetailDescription";
 import StoreDetailProductCard from "./StoreDetailProductCard";
@@ -46,7 +46,7 @@ class ShopDetailsPage extends Component {
               key={index}
               img={`https://pawadise.s3.ap-east-1.amazonaws.com/${product.image}`}
               productName={product.name}
-              price={product.price}
+              price={`${product.price} VND`}
             />
           ))}
         </div>

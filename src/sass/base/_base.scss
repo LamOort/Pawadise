@@ -21,4 +21,10 @@ body {
   @include respond(tab-port) {
     padding: 0;
   }
+
+  & input:focus, textarea:focus, select:focus{
+      outline: none;
+  }
+
+  & textarea, select, input, button { outline: none; }
 }
