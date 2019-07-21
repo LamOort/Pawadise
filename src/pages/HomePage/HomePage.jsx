@@ -77,7 +77,7 @@ class HomePage extends Component {
               <h3 className="heading-tertiary u-margin-bottom-small">
                 Pawadise có gì?
               </h3>
-              <p className="section-about__para">
+              <div className="section-about__para">
                 <ul>
                   <li>Hơn 200 shop bán đồ tại Đà Nẵng</li>
                   <li>Hỗ trợ danh mục đa dạng</li>
@@ -88,7 +88,7 @@ class HomePage extends Component {
                   <li>Hệ thống dịch vụ chăm sóc vật yêu gần bạn nhất</li>
                   <li>Dễ sử dụng cho tất cả mọi người </li>
                 </ul>
-              </p>
+              </div>
             </div>
             <div className="col-1-of-2">
               <div className="composition">

@@ -12,19 +12,25 @@ class ProfilePage extends Component {
       email: "",
       age: "",
       phone: "",
-      avatar: ""
+      avatar: "",
+      address: {
+        street: "",
+        district: "",
+        city: ""
+      }
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.auth.user) {
-      var { user } = nextProps.auth;
+      var { user } = nextProps.auth;      
       this.setState({
         name: user.name,
         email: user.email,
         age: user.age,
         phone: user.phoneNumber,
-        avatar: user.avatar
+        avatar: user.avatar,
+        address: user.address
       });
     }
   }
@@ -41,20 +47,23 @@ class ProfilePage extends Component {
   onSave = e => {
     e.preventDefault();
     alert("Chỉnh sửa thông tin thành công ^-^");
-    const { name, email, age, phone, avatar } = this.state;
+    const { name, email, age, phone, avatar, address:{street,district,city} } = this.state;
     const user = {
       name: name,
       email: email,
       age: age,
       phone: phone,
-      avatar: avatar
+      avatar: avatar,
+      street: street,
+      district: district,
+      city: city
     };
     this.props.onUpdateProfile(user);
   };
 
   render() {
     // const { user } = this.props.auth;
-    const { name, email, age, phone, avatar } = this.state;
+    const { name, email, age, phone, avatar, address:{street,district,city} } = this.state;
 
     return (
       <main>
@@ -140,6 +149,7 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Bạn nhà ở đâu thế ?"
                   name="address"
+                  value={`${street},${district},${city}`}
                   onChange={this.onChange}
                 />
               </div>
