@@ -41,13 +41,17 @@ class LoginForm extends Component {
       username: username,
       email: email,
       password: password
-    }).then(res => {
-      if (res.status === 201) {
-        this.setState({
-          isAccount: true
-        });
-      }
-    });
+    })
+      .then(res => {
+        if (res.status === 201) {
+          this.setState({
+            isAccount: true
+          });
+        }
+      })
+      .catch(function(error) {
+        alert("Tài khoản này đã tồn tại. Vui lòng nhập lại thông tin");        
+      });
   };
 
   keyPressed = e => {
@@ -92,6 +96,7 @@ class LoginForm extends Component {
               onChange={this.onChange}
               onKeyDown={this.keyPressed}
               name="password"
+              minLength="8"
               required
             />
           </div>
@@ -103,7 +108,7 @@ class LoginForm extends Component {
             <div className="login__text-field">
               <input
                 className="login__input"
-                type="text"
+                type="email"
                 placeholder="Email"
                 onChange={this.onChange}
                 name="email"

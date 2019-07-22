@@ -8,12 +8,12 @@ class ProfilePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: "",
-      email: "",
-      age: "",
-      phone: "",
-      avatar: "",
-      address: {
+      user : {
+        name: "",
+        email: "",
+        age: "",
+        phone: "",
+        avatar: null,
         street: "",
         district: "",
         city: ""
@@ -23,47 +23,71 @@ class ProfilePage extends Component {
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.auth.user) {
-      var { user } = nextProps.auth;      
+      const { user } = nextProps.auth;
+      console.log(user);
+
       this.setState({
-        name: user.name,
-        email: user.email,
-        age: user.age,
-        phone: user.phoneNumber,
-        avatar: user.avatar,
-        address: user.address
+        user: {
+          name: user.name,
+          email: user.email,
+          age: user.age,
+          phone: user.phoneNumber,
+          avatar: user.avatar,
+          street: user.address.street,
+          district: user.address.district,
+          city: user.address.city
+        }
       });
     }
   }
 
   onChange = e => {
-    var target = e.target;
-    var name = target.name;
-    var value = target.value;
+    let target = e.target;
+    let name = target.name;
+    let value = target.value;
     this.setState({
       [name]: value
     });
   };
 
+  fileSelectedHandler = e => {
+    this.setState({
+      avatar: e.target.files[0]
+    });
+  };
+
   onSave = e => {
-    e.preventDefault();
-    alert("Chỉnh sửa thông tin thành công ^-^");
-    const { name, email, age, phone, avatar, address:{street,district,city} } = this.state;
-    const user = {
-      name: name,
-      email: email,
-      age: age,
-      phone: phone,
-      avatar: avatar,
-      street: street,
-      district: district,
-      city: city
-    };
-    this.props.onUpdateProfile(user);
+    e.preventDefault();    
+    const {
+      name,
+      email,
+      age,
+      phone,
+      avatar,
+      street,
+      district,
+      city
+    } = this.state.user;
+    const bodyFormData = new FormData();
+    bodyFormData.set("name", name);
+    bodyFormData.append("email", email);
+    bodyFormData.append("age", age);
+    bodyFormData.append("phoneNumber", phone);
+    bodyFormData.append("avatar", avatar);
+    bodyFormData.append("street", street);
+    bodyFormData.append("district", district);
+    bodyFormData.append("city", city);
+    if (bodyFormData !== null) {
+      this.props.onUpdateProfile(bodyFormData);
+      alert("Chỉnh sửa thông tin thành công ^-^");
+    }
   };
 
   render() {
     // const { user } = this.props.auth;
-    const { name, email, age, phone, avatar, address:{street,district,city} } = this.state;
+    const { name, email, age, phone, avatar, street, district, city } =
+      this.state.user.name !== "" ? this.state.user : this.props.auth.user;
+    console.log(this.state);
 
     return (
       <main>
@@ -179,7 +203,18 @@ class ProfilePage extends Component {
             />
           </div>
 
-          <input type="file" className="profile__change-avatar-button" />
+          <input
+            type="file"
+            style={{ display: "none" }}
+            onChange={this.fileSelectedHandler}
+            ref={fileInput => (this.fileInput = fileInput)}
+          />
+          <button
+            className="profile__change-avatar-button"
+            onClick={() => this.fileInput.click()}
+          >
+            Chọn ảnh
+          </button>
         </section>
       </main>
     );

@@ -12,40 +12,45 @@ const navImgStyle = {
 };
 
 const Welcome = ({ user, onLogout }) => {
-  return(
+  return (
     <li style={{ listStyleType: "none" }} className="navigation__welcome">
-        <a
-          href="#"
-          style={{ textDecoration: "none" }}
-          className="dropdown-toggle menu-item navigation__user"
-          data-toggle="dropdown"
-        >
-          {user.name}
-        </a>
-        <ul className="dropdown-menu">
-          <li style={{ listStyleType: "none" }}>
-            <Link 
-            style={{ textDecoration: "none" }} className="navigation__user--attribute" 
-            to={`/profile/${user.username}`}>&bull; Trang cá nhân</Link>
-          </li>
-
-          <li style={{ listStyleType: "none" }}>
-            <Link 
+      <a
+        href="#"
+        style={{ textDecoration: "none" }}
+        className="dropdown-toggle menu-item navigation__user"
+        data-toggle="dropdown"
+      >
+        {user.name}
+      </a>
+      <ul className="dropdown-menu">
+        <li style={{ listStyleType: "none" }}>
+          <Link
             style={{ textDecoration: "none" }}
-            className="navigation__user--attribute" 
-            to="/" 
-            onClick={onLogout}>
-              &bull; Đăng xuất
-            </Link>
-          </li>
-        </ul>
-      </li>
+            className="navigation__user--attribute"
+            to={`/profile/${user.username}`}
+          >
+            &bull; Trang cá nhân
+          </Link>
+        </li>
+
+        <li style={{ listStyleType: "none" }}>
+          <Link
+            style={{ textDecoration: "none" }}
+            className="navigation__user--attribute"
+            to="/"
+            onClick={onLogout}
+          >
+            &bull; Đăng xuất
+          </Link>
+        </li>
+      </ul>
+    </li>
   );
 };
 class Nav extends Component {
   constructor(props) {
     super(props);
-    this.state = { user: null};
+    this.state = { user: null };
   }
 
   onLogout = e => {

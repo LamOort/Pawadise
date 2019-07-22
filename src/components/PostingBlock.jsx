@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Prompt } from "react-router-dom";
 import { connect } from "react-redux";
 import SeparationLine from "./SeparationLine";
 import { actAddNewRequest } from "../actions";
@@ -11,7 +12,8 @@ class PostingBlock extends Component {
     super(props);
     this.state = {
       message: "",
-      photos: ""
+      photos: "",
+      isBlocking: false
     };
   }
 
@@ -20,7 +22,8 @@ class PostingBlock extends Component {
     var name = target.name;
     var value = target.value;
     this.setState({
-      [name]: value
+      [name]: value,
+      isBlocking: value.length > 0
     });
   };
 
@@ -34,11 +37,13 @@ class PostingBlock extends Component {
       this.props.onAddNew(bodyFormData);
       this.setState({
         message: "",
-        photos: ""
+        photos: "",
+        isBlocking: false
       });
     }
   };
   render() {
+    const { isBlocking } = this.state;
     return (
       <div className="news__post-container u-margin-bottom-big">
         <div className="news__post-container--header">
@@ -46,7 +51,10 @@ class PostingBlock extends Component {
             Tạo bài viết
           </p>
         </div>
-
+        <Prompt
+          when={isBlocking}
+          message={location => `Bạn muốn chuyển trang đến ${location.pathname}`}
+        />
         <div className="news__post-container--body">
           <img
             src={avatar}

@@ -63,8 +63,8 @@ class NewsPage extends Component {
 
   render() {
     const { news } = this.props;
-    const { isAuthenticated } = this.props.auth;
-    // const { likesQuantity } = this.state;
+    const { isAuthenticated, user } = this.props.auth;
+
     return (
       <main>
         <img src={full_bg} alt="full-bg" className="bg" />
@@ -87,11 +87,14 @@ class NewsPage extends Component {
 
               <div className="news__display--content">{item.body}</div>
 
-              <img
-                src={postedImg}
-                alt="in post"
-                className="news__display--posted-image"
-              />
+              {item.photos.map((photo, index) => (
+                <img
+                  key={index}
+                  src={photo}
+                  alt="in post"
+                  className="news__display--posted-image"
+                />
+              ))}
 
               <div className="news__display--like-comment-container">
                 <div className="news__display--counter">
@@ -102,9 +105,7 @@ class NewsPage extends Component {
                   />
 
                   <p className="news__display--counterInNumLeft">
-                    {item.likesQuantity > 0
-                      ? item.likesQuantity
-                      : this.state.likesQuantity}
+                    {item.likesQuantity}
                   </p>
                 </div>
 
