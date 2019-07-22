@@ -1,4 +1,6 @@
 .profile {
+    position: relative;
+    min-height: 110rem;
     &__title {
         position: relative;
         font-size: 3rem;
@@ -11,9 +13,9 @@
 
     &__info-sprout {
         position: relative;
-        left: 15%;
-        height: 60rem;
-        width: 73rem;
+        left: 10%;
+        height: autp;
+        width: 70vw;
         max-width: 50%;
         margin: 10rem 0;
     }
@@ -38,7 +40,7 @@
         position: absolute;
         left: 5rem;
         top: 1.4rem;
-        font-size: 2.4rem;
+        font-size: 1.2vw;
         width: 88%;
         color: #2a2a2a;
         background: transparent;
@@ -50,7 +52,7 @@
         &-sprout {
             position: absolute;
             right: 0;
-            width: 50rem;
+            width: 50vw;
             max-width: 70%;
             height: inherit;
             border-radius: 1.6rem;
@@ -62,30 +64,31 @@
 
     &__save-button {
         position: absolute;
-        bottom: 5rem;
+        bottom: 7%;
         left: 50%;
         transform: translateX(-50%);
-        width: 12.6rem;
-        height: 6rem;
+        width: 7vw;
+        height: 7vh;
         border-radius: 2.3rem;
         box-shadow: 0 3px 6px 0 rgba(0, 0, 0, 0.16);
         background-color: #ff5836;
-        font-size: 3rem;
+        font-size: 2vw;
         color: $color-white;
     }
 
     &__avatar-container {
         position: absolute;
-        width: 30rem;
-        height: 30rem;
+        width: 18vw;
+        height: 18vw;
         border-radius: 50%;
         overflow: hidden;
-        top: 128%;
-        left: 73.5%;
+        bottom: 50%;
+        left: 70%;
     }
 
     &__avatar {
-        position: absolute;
+        position: relative;
+        z-index: 1;
         min-width: 100%;
         min-height: 100%;
         width: auto;

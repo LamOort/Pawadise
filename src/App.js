@@ -42,8 +42,8 @@ class App extends Component {
               key={location.key}
               classNames="page"
               timeout={{
-                enter: 1000,
-                exit: 1000
+                enter: 80,
+                leave: 80
               }}
             >
               <Route
