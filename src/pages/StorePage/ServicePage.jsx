@@ -34,7 +34,7 @@ class ServicePage extends Component {
       services: []
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     callApi("service", "GET", null).then(res => {
       this.setState({
         services: res.data

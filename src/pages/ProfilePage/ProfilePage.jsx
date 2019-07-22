@@ -12,19 +12,25 @@ class ProfilePage extends Component {
       email: "",
       age: "",
       phone: "",
-      avatar: ""
+      avatar: "",
+      address: {
+        street: "",
+        district: "",
+        city: ""
+      }
     };
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.auth.user) {
-      var { user } = nextProps.auth;
+      var { user } = nextProps.auth;      
       this.setState({
         name: user.name,
         email: user.email,
         age: user.age,
-        phone: "",
-        avatar: user.avatar
+        phone: user.phoneNumber,
+        avatar: user.avatar,
+        address: user.address
       });
     }
   }
@@ -41,19 +47,23 @@ class ProfilePage extends Component {
   onSave = e => {
     e.preventDefault();
     alert("Chỉnh sửa thông tin thành công ^-^");
-    const { name, email, age, avatar } = this.state;
+    const { name, email, age, phone, avatar, address:{street,district,city} } = this.state;
     const user = {
       name: name,
       email: email,
       age: age,
-      avatar: avatar
+      phone: phone,
+      avatar: avatar,
+      street: street,
+      district: district,
+      city: city
     };
     this.props.onUpdateProfile(user);
   };
 
   render() {
     // const { user } = this.props.auth;
-    const { name, email, age, avatar } = this.state;
+    const { name, email, age, phone, avatar, address:{street,district,city} } = this.state;
 
     return (
       <main>
@@ -125,30 +135,62 @@ class ProfilePage extends Component {
                   placeholder="Giúp chúng tôi giữ liên lạc"
                   name="phoneNumber"
                   onChange={this.onChange}
+                  value={phone}
                 />
               </div>
             </div>
 
             <div className="profile__info--text-container">
-              <label className="profile__attribute">Địa chỉ</label>
+              <label className="profile__attribute">Đường</label>
 
               <div className="profile__value-sprout">
                 <input
                   className="profile__value"
                   type="text"
-                  placeholder="Bạn nhà ở đâu thế ?"
-                  name="address"
+                  placeholder="Bạn nhà ở Đường nào ?"
+                  name="street"
+                  value={`${street}`}
                   onChange={this.onChange}
                 />
               </div>
             </div>
 
-            <button className="profile__save-button" onClick={this.onSave}>
-              Lưu
-            </button>
+            <div className="profile__info--text-container">
+              <label className="profile__attribute">Quận</label>
+
+              <div className="profile__value-sprout">
+                <input
+                  className="profile__value"
+                  type="text"
+                  placeholder="Nhà bạn ở Quận nào ?"
+                  name="district"
+                  value={`${district}`}
+                  onChange={this.onChange}
+                />
+              </div>
+            </div>
+
+            <div className="profile__info--text-container">
+              <label className="profile__attribute">Thành phố</label>
+
+              <div className="profile__value-sprout">
+                <input
+                  className="profile__value"
+                  type="text"
+                  placeholder="Bạn ở Thành Phố nào ?"
+                  name="city"
+                  value={`${city}`}
+                  onChange={this.onChange}
+                />
+              </div>
+            </div>
+
           </div>
 
-          <div
+          <button className="profile__save-button" onClick={this.onSave}>
+              Lưu
+            </button>
+          {/*<div
             style={{
               borderLeft: "1px solid #000",
               borderRight: "1px solid #000",
@@ -158,7 +200,7 @@ class ProfilePage extends Component {
               top: "127%",
               opacity: ".2"
             }}
-          />
+          />*/}
           <div className="profile__avatar-container">
             <img
               src={`http://pawadise.cf:3000/${avatar}`}
@@ -167,10 +209,7 @@ class ProfilePage extends Component {
             />
           </div>
 
-          <input
-            type="file"
-            className="profile__change-avatar-button"
-          />
+          <input type="file" className="profile__change-avatar-button" />
         </section>
       </main>
     );
