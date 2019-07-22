@@ -1,7 +1,8 @@
-  import React, { Component } from "react";
+import React, { Component } from "react";
 import StoreDetailHeader from "./StoreDetailHeader";
 import StoreDetailDescription from "./StoreDetailDescription";
 import StoreDetailProductCard from "./StoreDetailProductCard";
+import full_bg from "../../img/bg-full.png";
 
 import callApi from "../../utils/callApi";
 
@@ -35,6 +36,7 @@ class ShopDetailsPage extends Component {
 
     return (
       <div>
+        <img src={full_bg} alt="full-bg" className="bg" />
         <StoreDetailHeader info={info} photos={photos[0]} />
         <StoreDetailDescription info={info} description={description} />
 

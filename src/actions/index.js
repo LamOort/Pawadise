@@ -90,9 +90,10 @@ export const actGetProfile = decoded => dispatch => {
   })
 };
 
-export const actLogoutUser = () => dispatch => {
+export const actLogoutUser = (history) => dispatch => {
   localStorage.removeItem("jwtToken");
   setAuthorizationToken(false);
+  history.push("/");
   dispatch(setCurrentUser({}));
 };
 

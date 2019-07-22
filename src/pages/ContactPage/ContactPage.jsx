@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import callApi from "../../utils/callApi";
+import full_bg from "../../img/bg-full.png";
 
 class ContactPage extends Component {
   constructor(props) {
@@ -48,6 +49,7 @@ class ContactPage extends Component {
     const { name, email, title, phone, content } = this.state;
     return (
       <main>
+        <img src={full_bg} alt="full-bg" className="bg" />
         <header className="header--contact" />
         <div className="contact">
           <h2 className="contact__title">

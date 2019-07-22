@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import callApi from "../../utils/callApi";
+import full_bg from "../../img/bg-full.png";
+
 class GalleryPage extends Component {
   constructor(props) {
     super(props);
@@ -67,6 +69,7 @@ class GalleryPage extends Component {
     const { image } = this.state;
     return (
       <main>
+        <img src={full_bg} alt="full-bg" className="bg" />
         <header className="header--gallery" />
 
         <section className="gallery">

@@ -3,6 +3,7 @@ import callApi from "../../utils/callApi";
 import StoreDetailHeader from "./StoreDetailHeader";
 import StoreDetailDescription from "./StoreDetailDescription";
 import StoreDetailImage from "./StoreDetailImage";
+import full_bg from "../../img/bg-full.png";
 
 import sample from '../../img/background-2.jpg';
 
@@ -31,6 +32,7 @@ class ServiceDetailsPage extends Component {
 
     return (
       <div>
+        <img src={full_bg} alt="full-bg" className="bg" />
         <StoreDetailHeader info={info} photos={photos[0]}/>
         <StoreDetailDescription info={info} description={description}/>
 

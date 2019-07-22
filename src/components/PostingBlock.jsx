@@ -48,11 +48,15 @@ class PostingBlock extends Component {
         </div>
 
         <div className="news__post-container--body">
-          <img
-            src={avatar}
-            alt="user-avatar"
-            className="news__post-container--body--avatar"
-          />
+
+          <div className="news__post-container--body--avatar-sprout">
+            <img
+              src={avatar}
+              alt="user-avatar"
+              className="news__post-container--body--avatar-img"
+            />
+          </div>
+          
 
           <div className="news__post-container--body--sprout">
             <textarea

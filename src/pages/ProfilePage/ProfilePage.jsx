@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 
 import SeparationLine from "../../components/SeparationLine";
 import { actEditProfileRequest } from "../../actions";
+import full_bg from "../../img/bg-full.png";
 
 class ProfilePage extends Component {
   constructor(props) {
@@ -21,6 +22,21 @@ class ProfilePage extends Component {
     };
   }
 
+  componentDidMount() {
+    
+    if (this.props && this.props.auth && this.props.auth.user) {
+      var { user } = this.props.auth;      
+      this.setState({
+        name: user.name,
+        email: user.email,
+        age: user.age,
+        phone: user.phoneNumber,
+        avatar: user.avatar,
+        address: user.address || {}
+      });
+    }
+  }
+
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.auth.user) {
       var { user } = nextProps.auth;      
@@ -30,7 +46,7 @@ class ProfilePage extends Component {
         age: user.age,
         phone: user.phoneNumber,
         avatar: user.avatar,
-        address: user.address
+        address: user.address || {}
       });
     }
   }
@@ -67,6 +83,7 @@ class ProfilePage extends Component {
 
     return (
       <main>
+        <img src={full_bg} alt="full-bg" className="bg" />
         <header className="header--profile" />
 
         <section className="profile">
