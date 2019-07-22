@@ -11,7 +11,6 @@ import {
 
 import full_bg from "../../img/bg-full.png";
 import avatar from "../../img/user-avatar-sample.png";
-import postedImg from "../../img/img-posted-sample.png";
 import likeIcon from "../../img/like-icon.svg";
 import commentIcon from "../../img/comment-icon.svg";
 
@@ -63,7 +62,7 @@ class NewsPage extends Component {
 
   render() {
     const { news } = this.props;
-    const { isAuthenticated, user } = this.props.auth;
+    const { isAuthenticated } = this.props.auth;
 
     return (
       <main>

@@ -50,8 +50,12 @@ class LoginForm extends Component {
         }
       })
       .catch(function(error) {
-        alert("Tài khoản này đã tồn tại. Vui lòng nhập lại thông tin");        
+        alert("Tài khoản này đã tồn tại. Vui lòng nhập lại thông tin");
       });
+  };
+
+  onReset = e => {
+    e.preventDefault();  
   };
 
   keyPressed = e => {
@@ -179,6 +183,9 @@ class LoginForm extends Component {
             </a>
           </p>
         )}
+        <a href="#" onClick={this.onReset}>
+          Quên mật khẩu?
+        </a>
         <button className="login__close" onClick={this.props.closePopup}>
           &times;
         </button>

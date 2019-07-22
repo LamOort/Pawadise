@@ -140,7 +140,7 @@ class ProfilePage extends Component {
               <div className="profile__value-sprout">
                 <input
                   className="profile__value"
-                  type="text"
+                  type="email"
                   placeholder="Email"
                   name="email"
                   value={email}
@@ -173,7 +173,7 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Bạn nhà ở Đường nào ?"
                   name="street"
-                  value={`${street}`}
+                  value={street}
                   onChange={this.onChange}
                 />
               </div>
@@ -188,7 +188,7 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Nhà bạn ở Quận nào ?"
                   name="district"
-                  value={`${district}`}
+                  value={district}
                   onChange={this.onChange}
                 />
               </div>
@@ -203,7 +203,7 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Bạn ở Thành Phố nào ?"
                   name="city"
-                  value={`${city}`}
+                  value={city}
                   onChange={this.onChange}
                 />
               </div>

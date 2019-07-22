@@ -1,59 +1,53 @@
 import React, { Component } from "react";
 import callApi from "../../utils/callApi";
+import { InfiniteScroll } from "react-infinite-scroller";
 class GalleryPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: [],
+      images: [],
       page: 1,
-      loading: false,
-      isOpen: false
+      hasMoreImg: true
     };
   }
 
   componentDidMount() {
-    const { page } = this.state;
-    this.refs.iScroll.addEventListener("scroll", () => {
-      callApi(`gallery/pet?page=${page}`, "GET", null).then(res => {
-        if (
-          this.refs.iScroll.scrollTop + this.refs.iScroll.clientHeight <
-          this.refs.iScroll.scrollHeight
-        ) {
-          this.loadMore(res.data);
-        }
+    callApi("gallery/pet?page=1", "GET", null).then(res => {
+      this.setState({
+        image: res.data
       });
     });
   }
 
   onChangeKey = key => {
-    const { page } = this.state;
-    callApi(`gallery/${key}?page=${page}`, "GET", null).then(res => {
+    callApi(`gallery/${key}?page=1`, "GET", null).then(res => {
       this.setState({
         image: res.data
       });
     });
   };
 
-  loadMore = arr => {
-    this.setState({ loading: true });
-    // const arr = [];
-    setTimeout(() => {
-      this.setState({
-        image: this.state.image.concat(arr),
-        page: this.state.page + 1,
-        loading: false
+  loadMoreImg = () => {
+    const self = this;
+    const { page } = this.state;
+    callApi(`gallery/pet/page=${page}`)
+      .then(res => {
+        const images = self.state.images;
+        res.data.map(image => images.push(image));
+        if (images.length === 20) {
+          self.setState({
+            images: images,
+            page: page + 1
+          });
+        } else {
+          self.setState({
+            hasMoreImg: false
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
-    },500);
-    console.log(this.state.image);
-    
-    // this.setState(prev => {
-    //   return { page: prev.page + 1 };
-    // });
-  };
-
-  handleShowDialog = () => {
-    this.setState({ isOpen: !this.state.isOpen });
-    console.log("cliked");
   };
 
   componentWillMount() {
@@ -63,8 +57,24 @@ class GalleryPage extends Component {
       });
     });
   }
+
   render() {
-    const { image } = this.state;
+    const { images } = this.state;
+    const loader = <div className="loader">Loading ...</div>;
+    const items = [];
+
+    images.map((item, index) =>
+      items.push(
+        <div className="gallery__image--sprout" key={index}>
+          <img
+            src={item.link}
+            alt="gallery-displayed"
+            className="gallery__image--displayed"
+          />
+        </div>
+      )
+    );
+
     return (
       <main>
         <header className="header--gallery" />
@@ -95,63 +105,41 @@ class GalleryPage extends Component {
             </button>
 
             <div className="gallery__dropdown">
-              <button
-              className="gallery__sort-button gallery__drop-btn"
-              
-              >
-              Khác
+              <button className="gallery__sort-button gallery__drop-btn">
+                Khác
               </button>
 
               <div class="gallery__dropdown-content">
-                <button className="gallery__dropdown-btn" onClick={() => this.onChangeKey("hamster")}>Hamster</button>
-                <button className="gallery__dropdown-btn" onClick={() => this.onChangeKey("rabbit")}>Thỏ</button>
-                <button className="gallery__dropdown-btn" onClick={() => this.onChangeKey("hedgehog")}>Nhím</button>
+                <button
+                  className="gallery__dropdown-btn"
+                  onClick={() => this.onChangeKey("hamster")}
+                >
+                  Hamster
+                </button>
+                <button
+                  className="gallery__dropdown-btn"
+                  onClick={() => this.onChangeKey("rabbit")}
+                >
+                  Thỏ
+                </button>
+                <button
+                  className="gallery__dropdown-btn"
+                  onClick={() => this.onChangeKey("hedgehog")}
+                >
+                  Nhím
+                </button>
               </div>
             </div>
-            
           </div>
 
-          <div className="gallery__image--collection" ref="iScroll">
-            {image.map((item, index) => (
-              <div className="gallery__image--sprout" key={index}>
-                <img
-                  src={item.link}
-                  alt="gallery-displayed"
-                  className="gallery__image--displayed"
-                />
-                {this.state.loading ? (
-                  <p className="loading"> loading More Items..</p>
-                ) : (
-                  ""
-                )}
-                {/* <img
-                  className="small"
-                  src={item.link}
-                  onClick={this.handleShowDialog}
-                  alt="no image"
-                />
-                {this.state.isOpen && (
-                  <dialog
-                    className="dialog"
-                    style={{ position: "absolute" }}
-                    open
-                    onClick={this.handleShowDialog}
-                  >
-                    <img
-                      className="image"
-                      src={item.link}
-                      onClick={this.handleShowDialog}
-                      alt="no image"
-                    />
-                  </dialog>
-                )} */}
-              </div>
-            ))}
-          </div>
-
-          <button className="gallery__sort-button" onClick={this.loadMore}>
-              Load More
-          </button>
+          <InfiniteScroll
+            pageStart={0}
+            loadMore={this.loadMoreImg}
+            hasMore={this.state.hasMoreImg}
+            loader={loader}
+          >
+            <div className="gallery__image--collection">{items}</div>
+          </InfiniteScroll>
         </section>
       </main>
     );

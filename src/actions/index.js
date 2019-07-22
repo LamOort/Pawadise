@@ -82,7 +82,7 @@ export const actLoginUser = user => dispatch => {
       dispatch(actGetProfile(decoded));
     })
     .catch(err => {
-      alert("Vui lòng nhập lại tên đăng nhập và mật khẩu.");
+      alert("Tên đăng nhập hoặc mật khẩu sai. Vui lòng nhập lại tên đăng nhập và mật khẩu.");
     });
 };
 
