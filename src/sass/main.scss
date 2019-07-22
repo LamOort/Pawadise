@@ -19,6 +19,7 @@
 @import "layout/grid";
 @import "layout/footer";
 @import "layout/navigation";
+@import "layout/page";
 
 @import "pages/home";
 @import "pages/login";
@@ -28,14 +29,3 @@
 @import "pages/gallery";
 @import "pages/store";
 
-.dialog {
-    box-shadow: 0 8px 6px -6px black;
-    position: static;
-    left: 20%;
-    top: 10%;
-  }
-  
-  .image {
-    width: 300px;
-  }
-  

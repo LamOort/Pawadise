@@ -6,26 +6,49 @@ class GalleryPage extends Component {
     this.state = {
       image: [],
       page: 1,
+      loading: false,
       isOpen: false
     };
   }
 
+  componentDidMount() {
+    const { page } = this.state;
+    this.refs.iScroll.addEventListener("scroll", () => {
+      callApi(`gallery/pet?page=${page}`, "GET", null).then(res => {
+        if (
+          this.refs.iScroll.scrollTop + this.refs.iScroll.clientHeight <
+          this.refs.iScroll.scrollHeight
+        ) {
+          this.loadMore(res.data);
+        }
+      });
+    });
+  }
+
   onChangeKey = key => {
-    let img = [];
     const { page } = this.state;
     callApi(`gallery/${key}?page=${page}`, "GET", null).then(res => {
-      img.push(res.data);
       this.setState({
         image: res.data
       });
     });
   };
 
-  loadMore = e => {
-    e.preventDefault();
-    this.setState(prev => {
-      return { page: prev.page + 1 };
-    });
+  loadMore = arr => {
+    this.setState({ loading: true });
+    // const arr = [];
+    setTimeout(() => {
+      this.setState({
+        image: this.state.image.concat(arr),
+        page: this.state.page + 1,
+        loading: false
+      });
+    },500);
+    console.log(this.state.image);
+    
+    // this.setState(prev => {
+    //   return { page: prev.page + 1 };
+    // });
   };
 
   handleShowDialog = () => {
@@ -88,7 +111,7 @@ class GalleryPage extends Component {
             
           </div>
 
-          <div className="gallery__image--collection">
+          <div className="gallery__image--collection" ref="iScroll">
             {image.map((item, index) => (
               <div className="gallery__image--sprout" key={index}>
                 <img
@@ -96,7 +119,11 @@ class GalleryPage extends Component {
                   alt="gallery-displayed"
                   className="gallery__image--displayed"
                 />
-
+                {this.state.loading ? (
+                  <p className="loading"> loading More Items..</p>
+                ) : (
+                  ""
+                )}
                 {/* <img
                   className="small"
                   src={item.link}
@@ -120,10 +147,11 @@ class GalleryPage extends Component {
                 )} */}
               </div>
             ))}
-            <button className="gallery__sort-button" onClick={this.loadMore}>
-              Load More
-            </button>
           </div>
+
+          <button className="gallery__sort-button" onClick={this.loadMore}>
+              Load More
+          </button>
         </section>
       </main>
     );

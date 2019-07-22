@@ -35,9 +35,8 @@ class ShopPage extends Component {
       shops: []
     };
   }
-  componentWillMount() {
+  componentDidMount() {
     callApi("shop", "GET", null).then(res => {
-      // console.log(res);
       this.setState({
         shops: res.data
       });

@@ -14,7 +14,7 @@
     &--shop {
       height: 100vh;
       background-image: 
-      url(../img/shop-bg.png);
+      url('../img/shop-bg.png');
       background-repeat: no-repeat;
       background-size: 100% 100%; 
       background-position: center;
@@ -76,6 +76,7 @@
 
     &__logo-box{
       position: absolute;
+      z-index: 1;
       top: 4.5rem;
       left: 6rem;
 
