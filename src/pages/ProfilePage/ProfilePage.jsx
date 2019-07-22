@@ -165,26 +165,56 @@ class ProfilePage extends Component {
             </div>
 
             <div className="profile__info--text-container">
-              <label className="profile__attribute">Địa chỉ</label>
+              <label className="profile__attribute">Đường</label>
 
               <div className="profile__value-sprout">
                 <input
                   className="profile__value"
                   type="text"
-                  placeholder="Bạn nhà ở đâu thế ?"
-                  name="address"
-                  value={`${street},${district},${city}`}
+                  placeholder="Bạn nhà ở Đường nào ?"
+                  name="street"
+                  value={`${street}`}
                   onChange={this.onChange}
                 />
               </div>
             </div>
 
-            <button className="profile__save-button" onClick={this.onSave}>
-              Lưu
-            </button>
+            <div className="profile__info--text-container">
+              <label className="profile__attribute">Quận</label>
+
+              <div className="profile__value-sprout">
+                <input
+                  className="profile__value"
+                  type="text"
+                  placeholder="Nhà bạn ở Quận nào ?"
+                  name="district"
+                  value={`${district}`}
+                  onChange={this.onChange}
+                />
+              </div>
+            </div>
+
+            <div className="profile__info--text-container">
+              <label className="profile__attribute">Thành phố</label>
+
+              <div className="profile__value-sprout">
+                <input
+                  className="profile__value"
+                  type="text"
+                  placeholder="Bạn ở Thành Phố nào ?"
+                  name="city"
+                  value={`${city}`}
+                  onChange={this.onChange}
+                />
+              </div>
+            </div>
+
           </div>
 
-          <div
+          <button className="profile__save-button" onClick={this.onSave}>
+              Lưu
+            </button>
+          {/*<div
             style={{
               borderLeft: "1px solid #000",
               borderRight: "1px solid #000",
@@ -194,7 +224,7 @@ class ProfilePage extends Component {
               top: "127%",
               opacity: ".2"
             }}
-          />
+          />*/}
           <div className="profile__avatar-container">
             <img
               src={`http://pawadise.cf:3000/${avatar}`}

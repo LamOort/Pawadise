@@ -148,6 +148,10 @@ class GalleryPage extends Component {
               </div>
             ))}
           </div>
+
+          <button className="gallery__sort-button" onClick={this.loadMore}>
+              Load More
+          </button>
         </section>
       </main>
     );

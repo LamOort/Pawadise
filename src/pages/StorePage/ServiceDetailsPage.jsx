@@ -47,7 +47,6 @@ class ServiceDetailsPage extends Component {
                    <StoreDetailImage img= {sample} />
                    <StoreDetailImage img= {sample} />
                    <StoreDetailImage img= {sample} />
-                   
                 </div>
 
       </div>

@@ -10,9 +10,9 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div>
+        <div className="page__container">
+          <Logo />  
           <Nav />
-          <Logo />
           {this.showContent(routes)}
           <Footer />
         </div>
@@ -42,8 +42,8 @@ class App extends Component {
               key={location.key}
               classNames="page"
               timeout={{
-                enter: 1000,
-                exit: 1000
+                enter: 80,
+                leave: 80
               }}
             >
               <Route
