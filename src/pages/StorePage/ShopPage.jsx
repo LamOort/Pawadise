@@ -45,6 +45,8 @@ class ShopPage extends Component {
       this.setState({
         shops: res.data
       });
+    }).catch(err => {
+      console.log(err);      
     });
   }
   render() {

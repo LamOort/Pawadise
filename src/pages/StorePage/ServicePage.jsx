@@ -44,6 +44,8 @@ class ServicePage extends Component {
     callApi("service", "GET", null).then(res => {
       this.setState({
         services: res.data
+      }).catch(err => {
+        console.log(err);      
       });
     });
   }
