@@ -81,9 +81,28 @@
         border-bottom: 0.4rem transparent !important;
       }
     }
+    &--upload_photo-btn {
+      position: absolute;
+      height: 3.6rem;
+      width: 10rem;
+      border-radius: 1.6rem;
+      text-align: center;
+      right: 20rem;
+      bottom: 3rem;
+      font-size: $default-font-size;
+      z-index: 1;
+      cursor: pointer;
+    }
   }
 
   &__display {
+
+    &-between {
+      display: flex;
+      justify-content: space-between;
+      margin: 0 12px;
+    }
+
     &-rounder {
       padding: 20px 20px 0;
     }
@@ -103,8 +122,8 @@
     }
 
     &-seperator {
-        background-color: #fff;
-        border-top: 1px solid #dadde1;
+      background-color: #fff;
+      border-top: 1px solid #dadde1;
     }
 
     &--container {
@@ -132,10 +151,12 @@
       width: 4vw;
 
       &-small {
-        top: 9%;
-        left: 2%;
-        height: 3vw;
-        width: 3vw;
+        border-radius: 50%;
+        display: block;
+        margin-right: 1.2rem;
+        position: relative;
+        height: 2.2vw;
+        widows: 2.2vw;
       }
     }
 
@@ -349,81 +370,157 @@
       }
     }
 
+    &--comment-stream {
+      background-color: #fff;
+      border-top: 1px solid #dadde1;
+
+      & ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+        display: block;
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0px;
+        margin-inline-end: 0px;
+        padding-inline-start: 40px;
+
+        & li {
+          display: list-item;
+          text-align: -webkit-match-parent;
+        }
+      }
+    }
+
     &--comment-sprout {
+      line-height: 2rem;
       position: relative;
-      height: auto;
-      max-height: 30rem;
-      margin-bottom: 4rem;
-      overflow: hidden;
+      padding: 10px 12px;
+    }
+
+    &--avatar-float {
+      float: left;
     }
 
     &--comment-content {
-      position: relative;
-      height: auto;
-      overflow-x: hidden;
-      overflow-y: scroll;
-      min-height: 7rem;
-      width: 45vw;
-      margin-bottom: 3rem;
-      background: repeat-x scroll center top transparent;
+      overflow: hidden;
+      line-height: 2rem;
       left: 7vw;
-      border-radius: 2rem;
-      background-color: #f3f3f3;
+      display: inline-block;
+      vertical-align: middle;
+      max-width: calc(100% - 22px);
+      word-wrap: break-word;
+
+      &-sprout {
+        display: inline-flex;
+        max-width: 100%;
+        position: relative;
+        vertical-align: middle;
+
+        &-first_inner {
+          flex: 1 1 auto;
+          min-width: 0;
+          width: 100%;
+        }
+
+        &-second_inner {
+          background-color: $color-grey-light-2;
+          border-radius: 18px;
+          box-sizing: border-box;
+          color: #1c1e21;
+          display: inline-block;
+          line-height: 16px;
+          margin: 0;
+          max-width: 100%;
+          word-wrap: break-word;
+          position: relative;
+          white-space: normal;
+          word-break: break-word;
+        }
+
+        &-rounder {
+          padding: 8px 10px;
+          white-space: normal;
+          word-break: break-word;
+          line-height: 2rem;
+        }
+      }
     }
 
     &--userName {
-      position: absolute;
-      top: 30%;
-      left: 1%;
-      font-size: 1vw;
-      font-weight: bold;
-      text-decoration: none;
       color: #2e7ba7;
       cursor: pointer;
+      font-weight: 600;
+      line-height: 2rem;
+      text-decoration: none;
+      font-size: 1vw;
+      margin-right: 1rem;
     }
 
     &--comment-text {
-      position: absolute;
       font-size: 1vw;
       left: 13vw;
       word-wrap: break-word;
     }
 
     &--comment-action-box {
-      position: relative;
-      height: 8rem;
+      padding: 2px 12px 8px 12px;
+
+      &-floatLeft {
+        float: left;
+
+        & span {
+          border-radius: 50%;
+          display: block;
+          margin-right: 6px;
+          position: relative;
+
+          & img {
+            height: 32px;
+            width: 32px;
+            border-radius: 50%;
+            display: block;
+            overflow: hidden;
+            border: 0;
+          }
+
+          &::after {
+            border: 1px solid rgba(0, 0, 0, .1);
+            border-radius: 50%;
+            bottom: 0;
+            content: '';
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+          }
+        }
+      }
+    }
+
+    &--comment-input-overflow {
+      overflow: hidden;
     }
 
     &--comment-input-sprout {
-      position: relative;
-      height: 5rem;
-      top: 0.5rem;
-      left: 16%;
-      max-width: 70%;
-      border-radius: 28px;
-      border: solid 1px rgba(112, 112, 112, 0.3);
-      background-color: #f3f3f3;
+      flex-grow: 1;
     }
 
     &--comment-input-box {
-      position: absolute;
-      width: 90%;
-      top: 30%;
-      left: 3%;
-      font-size: 1.8rem;
-      color: #2a2a2a;
-      background: transparent;
-      border-top: transparent !important;
-      border-left: transparent !important;
-      border-right: transparent !important;
-      border-bottom: 0.4rem transparent !important;
+      position: relative;
+      background-color: #f2f3f5;
+      border: 1px solid #ccd0d5;
+      border-radius: 16px;
+      display: flex;
+      justify-content: flex-end;
+      height: 5vh;
     }
 
     &--comment-action-button {
       position: absolute;
       right: 2%;
-      top: 7%;
-      height: 7vh;
+      bottom: 1.6%;
+      height: 5vh;
       width: 5vw;
       font-size: 1vw;
       border-radius: 3rem;
@@ -431,6 +528,22 @@
       background-color: $color-grey-light-2;
       color: $color-tertiary-light;
       cursor: pointer;
+    }
+
+    &--comment-paragraph {
+      position: absolute;
+      top: 1vh;
+      left: 2%;
+      height: 5vh;
+      width: 80%;
+      font-size: 1.2vw;
+      font-weight: 400;
+      outline: none;
+      background: transparent;
+        border-top: transparent !important;
+        border-left: transparent !important;
+        border-right: transparent !important;
+        border-bottom: .4rem transparent !important;
     }
   }
 }

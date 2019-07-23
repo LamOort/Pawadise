@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import SeparationLine from "../../components/SeparationLine";
 import PostingBlock from "../../components/PostingBlock";
 import { connect } from "react-redux";
 import {
@@ -12,6 +11,7 @@ import {
 
 import full_bg from "../../img/bg-full.png";
 import avatar from "../../img/user-avatar-sample.png";
+import unlikedIcon from "../../img/unliked.png";
 import likeIcon from "../../img/like-icon.svg";
 import commentIcon from "../../img/comment-icon.svg";
 
@@ -135,6 +135,7 @@ class NewsPage extends Component {
                           <div className="news__display--like_counter">
                             <span className="news__display--like-count">
                               <img src={likeIcon} alt="in post" />
+                              &nbsp;&nbsp;
                             </span>
 
                             <div className="news__display--counter_block">
@@ -153,7 +154,7 @@ class NewsPage extends Component {
                           <div className="news__display--comment_counter">
                             <span>
                               <span className="news__display--comment_count_inNum">
-                                {item.comments.length}
+                                {item.comments.length}&nbsp;
                               </span>
                               <img src={commentIcon} alt="in post" />
                             </span>
@@ -171,7 +172,7 @@ class NewsPage extends Component {
                                   onClick={() => this.isLike(item._id)}
                                 >
                                   <img
-                                    src={likeIcon}
+                                    src={unlikedIcon}
                                     alt="like button"
                                     className="news__display--like-button_icon"
                                   />
@@ -191,57 +192,93 @@ class NewsPage extends Component {
                     </div>
                   </div>
 
-                  {item.comments.map(cmt => (
-                    <div
-                      className="news__display--comment-sprout"
-                      key={cmt._id}
-                    >
-                      <img
-                        src={avatar}
-                        alt="user-avatar"
-                        className="news__display--avatar news__display--avatar-small  "
-                      />
+                  <div>
+                    <div className="news__display--comment-stream">
+                      {item.comments.map(cmt => (
+                        <ul>
+                          <li>
+                            <div>
+                              <div
+                                className="news__display--comment-sprout"
+                                key={cmt._id}
+                              >
+                                <div className="news__display--avatar-float">
+                                  <img
+                                    src={avatar}
+                                    alt="user-avatar"
+                                    className="news__display--avatar-small  "
+                                  />
+                                </div>
 
-                      <div className="news__display--comment-content">
-                        <Link
-                          className="news__display--userName"
-                          to={`/profile/${cmt.commentsAuthor}`}
-                        >
-                          {cmt.authorName}
-                        </Link>
+                                <div>
+                                  <div className="news__display--comment-content">
+                                    <div className="news__display--comment-content-sprout">
+                                      <div className="news__display--comment-content-sprout-first_inner">
+                                        <div>
+                                          <div className="news__display--comment-content-sprout-second_inner">
+                                            <div className="news__display--comment-content-sprout-rounder">
+                                              <Link
+                                                className="news__display--userName"
+                                                to={`/profile/${
+                                                  cmt.commentsAuthor
+                                                }`}
+                                              >
+                                                {cmt.authorName}
+                                              </Link>
 
-                        <p className="news__display--comment-text">
-                          {cmt.body}
-                        </p>
+                                              <span className="news__display--comment-text">
+                                                {cmt.body}
+                                              </span>
+                                            </div>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+                              </div>
+                            </div>
+                          </li>
+                        </ul>
+                      ))}
+                      <div className="news__displays-between" />
+
+                      <div className="news__display--comment-action-box">
+                        <div className="news__display--comment-action-box-floatLeft">
+                          <span>
+                            <img src={avatar} alt="user-avatar" />
+                          </span>
+                        </div>
+
+                        <div>
+                          <div className="news__display--comment-input-overflow">
+                            <div className="news__display--comment-input-flexgrow">
+                              <div className="news__display--comment-input-flexgrow">
+                                <div className="news__display--comment-input-flexgrow">
+                                  <form className="news__display--comment-input-box">
+                                    <input
+                                      className="news__display--comment-paragraph"
+                                      type="text"
+                                      name="comment"
+                                      value={this.state.comment}
+                                      onChange={this.onChange}
+                                    />
+                                  </form>
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
+                      <button
+                        className="news__display--comment-action-button"
+                        onClick={() =>
+                          this.onComment(item._id, this.state.comment)
+                        }
+                      >
+                        Bình luận
+                      </button>
                     </div>
-                  ))}
-
-                  <div className="news__display--comment-action-box">
-                    <img
-                      src={avatar}
-                      alt="user-avatar"
-                      className="news__display--avatar news__display--avatar-small  "
-                    />
-
-                    <div className="news__display--comment-input-sprout">
-                      <input
-                        className="news__display--comment-input-box"
-                        type="text"
-                        name="comment"
-                        value={this.state.comment}
-                        onChange={this.onChange}
-                      />
-                    </div>
-
-                    <button
-                      className="news__display--comment-action-button"
-                      onClick={() =>
-                        this.onComment(item._id, this.state.comment)
-                      }
-                    >
-                      Bình luận
-                    </button>
                   </div>
                 </div>
               </div>

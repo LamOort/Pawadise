@@ -67,12 +67,7 @@ class PostingBlock extends Component {
             ref={fileInput => (this.fileInput = fileInput)}
             multiple
           />
-          <button
-            className="profile__change-avatar-button"
-            onClick={() => this.fileInput.click()}
-          >
-            Chọn ảnh
-          </button>
+          
         </div>
         <Prompt
           when={isBlocking}
@@ -96,7 +91,13 @@ class PostingBlock extends Component {
               onChange={this.onChange}
             />
           </div>
-
+          
+          <button
+            className="news__post-container--upload_photo-btn"
+            onClick={() => this.fileInput.click()}
+          >
+            Chọn ảnh
+          </button>
           <button
             className="btn__action btn__action--post"
             onClick={this.onSubmit}
@@ -112,7 +113,7 @@ class PostingBlock extends Component {
 
         <SeparationLine
           position="relative"
-          bottom="12rem"
+          bottom="9rem"
           opacity=".2"
           margin="0 5rem"
         />
