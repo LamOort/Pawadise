@@ -1,9 +1,9 @@
 .news {
     &__post-container {
         position: relative;
-        margin: 7.8rem 27.8rem;
+        margin: 10rem 20%;
         height: 47.2rem;
-        min-width: 70%;
+        min-width: 50%;
         border-radius: 2.3rem;
         box-shadow: 0 .3rem .6rem 0 rgba(0, 0, 0, 0.16);
         background-color: $color-white;
@@ -21,7 +21,7 @@
                 padding: 2.3rem 5rem;
                 max-width: 50%;
                 height: 3.4rem;
-                font-size: 2.8rem;
+                font-size: 1.5vw;
                 font-weight: bold;
                 text-align: left;
                 color: #2a2a2a;
@@ -31,33 +31,37 @@
         &--body {
             position: relative;
             width: auto;
-            height: 39.6rem;
+            min-height: 36rem;
 
-            &--avatar {
+            &--avatar-sprout {
                 position: absolute;
-                margin: 0 7.3rem;
-                height: 8rem;
-                width: 8rem;
+                left: 2vw;
+                height: 4vw;
+                width: 4vw;
+            }x
+
+            &--avatar-img {
+
             }
 
             &--sprout {
                 position: relative;
                 margin-top: 4rem;
-                right: 3rem;
-                padding-left: 25rem;
+                right: 3%;
+                padding-left: 17%;
                 width: auto;
-                height: 20rem;
+                min-height: 20rem;
                 
             }
 
             &--content {
                 position: absolute;
-                font-size: 2.5rem;
+                font-size: 1.2vw;
                 font-family: inherit;
-                resize: none;
                 height: 20.2rem;
-                min-width: 70%;
-                line-height: 2rem;
+                min-width: 80%;
+                resize: none;
+                line-height: 3.5vh;
                 background: transparent;
                 border-top: transparent !important;
                 border-left: transparent !important;

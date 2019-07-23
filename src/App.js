@@ -11,7 +11,7 @@ class App extends Component {
     return (
       <Router>
         <div className="page__container">
-          <Logo />  
+          <Logo />
           <Nav />
           {this.showContent(routes)}
           <Footer />

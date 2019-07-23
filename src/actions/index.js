@@ -33,6 +33,25 @@ export const actAddNew = new1 => {
   };
 };
 
+export const actDeleteNewRequest = id => {
+  return dispatch => {
+    return callApi(`posts/${id}`, "DELETE")
+      .then(res => {
+        dispatch(actAddNew(id));
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  };
+};
+
+export const actDeleteNew = id => {
+  return {
+    type: Types.DELETE_NEWS,
+    id
+  };
+};
+
 export const actAddCommentsRequest = (id, new_cmt) => {
   return dispatch => {
     return callApi(`posts/${id}`, "POST", { comment: new_cmt }).then(res => {
@@ -82,7 +101,9 @@ export const actLoginUser = user => dispatch => {
       dispatch(actGetProfile(decoded));
     })
     .catch(err => {
-      alert("Tên đăng nhập hoặc mật khẩu sai. Vui lòng nhập lại tên đăng nhập và mật khẩu.");
+      alert(
+        "Tên đăng nhập hoặc mật khẩu sai. Vui lòng nhập lại tên đăng nhập và mật khẩu."
+      );
     });
 };
 
@@ -92,24 +113,28 @@ export const actGetProfile = decoded => dispatch => {
   });
 };
 
-export const actLogoutUser = () => dispatch => {
-  callApi("logout").then(res => {
-    localStorage.removeItem("jwtToken");
-    setAuthorizationToken(false);
-    dispatch(setCurrentUser({}));
-    res.redirect("/");
-  }).catch(err => {
-    console.log(err);    
-  });
+export const actLogoutUser = history => dispatch => {
+  callApi("logout")
+    .then(res => {
+      localStorage.removeItem("jwtToken");
+      setAuthorizationToken(false);
+      history.push("/");
+      dispatch(setCurrentUser({}));
+    })
+    .catch(err => {
+      console.log(err);
+    });
 };
 
 export const actEditProfileRequest = user => {
   return dispatch => {
-    return callApi("users/me", "PATCH", user).then(res => {
-      dispatch(actEditProfile(res.data));
-    }).catch(err => {
-      console.log(err);      
-    });
+    return callApi("users/me", "PATCH", user)
+      .then(res => {
+        dispatch(actEditProfile(res.data));
+      })
+      .catch(err => {
+        console.log(err);
+      });
   };
 };
 

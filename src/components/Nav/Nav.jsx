@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { actLogoutUser } from "../../actions/index";
 import React, { Component } from "react";
@@ -48,14 +48,11 @@ const Welcome = ({ user, onLogout }) => {
   );
 };
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { user: null };
-  }
-
   onLogout = e => {
     e.preventDefault();
-    this.props.actLogoutUser();
+    if (this.props.history) {
+      this.props.actLogoutUser(this.props.history);
+    }
   };
 
   render() {
@@ -127,4 +124,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { actLogoutUser }
-)(Nav);
+)(withRouter(Nav));

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Prompt } from "react-router-dom";
 import callApi from "../../utils/callApi";
+import full_bg from "../../img/bg-full.png";
 
 class ContactPage extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class ContactPage extends Component {
       phone: phone,
       content: content
     };
-    if(data.length > 0){
+    if (data.length > 0) {
       callApi("contact", "POST", data).then(res => {
         alert("Thông tin đã được gửi đến chúng tôi !!!");
         this.setState({
@@ -47,8 +48,8 @@ class ContactPage extends Component {
           isBlocking: false
         });
       });
-    }else{
-      alert("Bạn chưa điền thông tin. Vui lòng nhập lại.")
+    } else {
+      alert("Bạn chưa điền thông tin. Vui lòng nhập lại.");
     }
   };
 
@@ -60,6 +61,7 @@ class ContactPage extends Component {
           when={isBlocking}
           message={location => `Bạn muốn chuyển trang đến ${location.pathname}`}
         />
+        <img src={full_bg} alt="full-bg" className="bg" />
         <header className="header--contact" />
         <div className="contact">
           <h2 className="contact__title">

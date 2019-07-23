@@ -1,46 +1,29 @@
 import React, { Component } from "react";
 import callApi from "../../utils/callApi";
-import { InfiniteScroll } from "react-infinite-scroller";
+import full_bg from "../../img/bg-full.png";
+
 class GalleryPage extends Component {
   constructor(props) {
     super(props);
     this.state = {
       images: [],
       page: 1,
+      key: "pet",
       hasMoreImg: true
     };
   }
 
   componentDidMount() {
-    callApi("gallery/pet?page=1", "GET", null).then(res => {
-      this.setState({
-        image: res.data
-      });
-    });
+    this.loadImg();
   }
 
   onChangeKey = key => {
-    callApi(`gallery/${key}?page=1`, "GET", null).then(res => {
-      this.setState({
-        image: res.data
-      });
-    });
-  };
-
-  loadMoreImg = () => {
-    const self = this;
-    const { page } = this.state;
-    callApi(`gallery/pet/page=${page}`)
+    this.setState({ key: key, hasMoreImg: true, page: 1 });
+    callApi(`gallery/${key}?page=1`)
       .then(res => {
-        const images = self.state.images;
-        res.data.map(image => images.push(image));
-        if (images.length === 20) {
-          self.setState({
-            images: images,
-            page: page + 1
-          });
-        } else {
-          self.setState({
+        this.setState({ images: res.data });
+        if (res.data.length < 20) {
+          this.setState({
             hasMoreImg: false
           });
         }
@@ -50,33 +33,39 @@ class GalleryPage extends Component {
       });
   };
 
-  componentWillMount() {
-    callApi("gallery/pet?page=1", "GET", null).then(res => {
-      this.setState({
-        image: res.data
+  loadImg = () => {
+    const { key, page, images } = this.state;
+    callApi(`gallery/${key}?page=${page}`)
+      .then(res => {
+        this.setState({ images: [...images, ...res.data] });
+        if (res.data.length < 20) {
+          this.setState({
+            hasMoreImg: false
+          });
+        }
+      })
+      .catch(err => {
+        console.log(err);
       });
-    });
-  }
+  };
+
+  loadMore = e => {
+    e.preventDefault();
+    if (this.state.hasMoreImg) {
+      this.setState(
+        prevState => ({
+          page: prevState.page + 1
+        }),
+        this.loadImg
+      );
+    }
+  };
 
   render() {
-    const { images } = this.state;
-    const loader = <div className="loader">Loading ...</div>;
-    const items = [];
-
-    images.map((item, index) =>
-      items.push(
-        <div className="gallery__image--sprout" key={index}>
-          <img
-            src={item.link}
-            alt="gallery-displayed"
-            className="gallery__image--displayed"
-          />
-        </div>
-      )
-    );
-
+    const { images, hasMoreImg } = this.state;
     return (
       <main>
+        <img src={full_bg} alt="full-bg" className="bg" />
         <header className="header--gallery" />
 
         <section className="gallery">
@@ -132,14 +121,25 @@ class GalleryPage extends Component {
             </div>
           </div>
 
-          <InfiniteScroll
-            pageStart={0}
-            loadMore={this.loadMoreImg}
-            hasMore={this.state.hasMoreImg}
-            loader={loader}
-          >
-            <div className="gallery__image--collection">{items}</div>
-          </InfiniteScroll>
+          <div className="gallery__image--collection">
+            {images.map((image, index) => (
+              <div className="gallery__image--sprout" key={index}>
+                <img
+                  src={image.link}
+                  alt="gallery-displayed"
+                  className="gallery__image--displayed"
+                />
+              </div>
+            ))}
+
+            {hasMoreImg ? (
+              <a href="#" onClick={this.loadMore}>
+                Load More
+              </a>
+            ) : (
+              ""
+            )}
+          </div>
         </section>
       </main>
     );

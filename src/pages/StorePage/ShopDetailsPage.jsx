@@ -1,9 +1,10 @@
-  import React, { Component } from "react";
+import React, { Component } from "react";
 import StoreDetailHeader from "./StoreDetailHeader";
 import StoreDetailDescription from "./StoreDetailDescription";
 import StoreDetailProductCard from "./StoreDetailProductCard";
-
 import callApi from "../../utils/callApi";
+
+import full_bg from "../../img/bg-full.png";
 
 class ShopDetailsPage extends Component {
   constructor(props) {
@@ -32,9 +33,9 @@ class ShopDetailsPage extends Component {
   }
   render() {
     const { products, info, photos, description } = this.state;
-
     return (
       <div>
+        <img src={full_bg} alt="full-bg" className="bg" />
         <StoreDetailHeader info={info} photos={photos[0]} />
         <StoreDetailDescription info={info} description={description} />
 
@@ -44,7 +45,9 @@ class ShopDetailsPage extends Component {
           {products.map((product, index) => (
             <StoreDetailProductCard
               key={index}
-              img={`https://pawadise.s3.ap-east-1.amazonaws.com/${product.image}`}
+              img={`https://pawadise.s3.ap-east-1.amazonaws.com/${
+                product.image
+              }`}
               productName={product.name}
               price={`${product.price} VND`}
             />

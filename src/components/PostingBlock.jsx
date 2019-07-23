@@ -33,7 +33,7 @@ class PostingBlock extends Component {
     const bodyFormData = new FormData();
     bodyFormData.set("body", message);
     bodyFormData.append("photos", photos);
-    if (message.length > 0) {
+    if (message.length > 0 || photos.length > 0) {
       this.props.onAddNew(bodyFormData);
       this.setState({
         message: "",
@@ -56,11 +56,13 @@ class PostingBlock extends Component {
           message={location => `Bạn muốn chuyển trang đến ${location.pathname}`}
         />
         <div className="news__post-container--body">
-          <img
-            src={avatar}
-            alt="user-avatar"
-            className="news__post-container--body--avatar"
-          />
+          <div className="news__post-container--body--avatar-sprout">
+            <img
+              src={avatar}
+              alt="user-avatar"
+              className="news__post-container--body--avatar-img"
+            />
+          </div>
 
           <div className="news__post-container--body--sprout">
             <textarea

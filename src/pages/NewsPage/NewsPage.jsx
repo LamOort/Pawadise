@@ -6,7 +6,8 @@ import { connect } from "react-redux";
 import {
   actGetAllNewsRequest,
   actAddCommentsRequest,
-  actLikeRequest
+  actLikeRequest,
+  actDeleteNewRequest
 } from "../../actions/index";
 
 import full_bg from "../../img/bg-full.png";
@@ -56,13 +57,17 @@ class NewsPage extends Component {
     }
   };
 
+  onDeleteNew = id => {
+    this.props.onDeleteNew(id);
+  };
+
   componentDidMount() {
     this.props.getAllNews();
   }
 
   render() {
     const { news } = this.props;
-    const { isAuthenticated } = this.props.auth;
+    const { isAuthenticated, user } = this.props.auth;
 
     return (
       <main>
@@ -84,12 +89,21 @@ class NewsPage extends Component {
 
               <div className="news__display--dateTime">{item.date}</div>
 
-              <div className="news__display--content">{item.body}</div>
+              <div className="news__display--content">
+                {item.body}
+                {/* {user._id === item.author ? (
+                  <button onClick={() => this.onDeleteNew(item._id)}>
+                    Xóa
+                  </button>
+                ) : (
+                  ""
+                )} */}
+              </div>
 
               {item.photos.map((photo, index) => (
                 <img
                   key={index}
-                  src={photo}
+                  src={`http://pawadise.cf:3000/${photo}`}
                   alt="in post"
                   className="news__display--posted-image"
                 />
@@ -224,6 +238,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     isLike: id => {
       dispatch(actLikeRequest(id));
+    },
+    onDeleteNew: id => {
+      dispatch(actDeleteNewRequest(id));
     }
   };
 };
