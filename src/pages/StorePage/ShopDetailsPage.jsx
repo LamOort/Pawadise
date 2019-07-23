@@ -51,7 +51,7 @@ class ShopDetailsPage extends Component {
                 product.image
               }`}
               productName={product.name}
-              price={`${product.price} VND`}
+              price={`${product.price}`}
             />
           ))}
         </div>

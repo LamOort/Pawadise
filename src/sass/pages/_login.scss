@@ -118,4 +118,16 @@
             opacity: 1;
         }
     }
+
+    &__forget-password {
+        position: relative;
+        text-decoration: none;
+        top: 1vh;
+        left: .7vw;
+
+        &:visited {
+            color: $color-secondary-dark;
+        }
+    }
+
 }
