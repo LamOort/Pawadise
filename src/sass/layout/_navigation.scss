@@ -1,6 +1,18 @@
 .navigation {
     list-style-type: none;
     &__link {
+        & input:focus, textarea:focus, select:focus{
+            outline: none !important;
+            outline-color: transparent;
+            outline-style: none;
+        }
+      
+        & textarea, select, input, button { 
+            outline: none;
+            outline-color: transparent;
+            outline-style: none; 
+        }
+      
         &:link,
         &:visited {
             display: inline-block;
@@ -12,6 +24,9 @@
             color: $color-white;
             text-decoration: none;
             transition: all .2s;
+            outline: none !important;
+            outline-color: transparent;
+            outline-style: none;
     }
 
         &:hover,

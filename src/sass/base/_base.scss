@@ -3,7 +3,6 @@
 *::before {
   margin: 0;
   padding: 0;
-  box-sizing: inherit;
 }
 
 html {
@@ -14,7 +13,9 @@ html {
   
 }
 
-
+div {
+  display: block;
+}
 
 body {
   box-sizing: border-box;

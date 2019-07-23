@@ -40,7 +40,7 @@ class PostingBlock extends Component {
   };
   render() {
     return (
-      <div className="news__post-container u-margin-bottom-big">
+      <div className="news__post-container">
         <div className="news__post-container--header">
           <p className="news__post-container--header--paragraph">
             Tạo bài viết

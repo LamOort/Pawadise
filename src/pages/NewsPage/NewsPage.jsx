@@ -74,130 +74,160 @@ class NewsPage extends Component {
           {isAuthenticated ? <PostingBlock /> : null}
 
           {news.map(item => (
-            <div className="news__display--container" key={item._id}>
-              <img
-                src={avatar}
-                alt="user-avatar"
-                className="news__display--avatar"
-              />
+            <div>
+              <div className="news__display--container" key={item._id}>
+                <div className="news__display-rounder">
+                  <div className="news__display-topSpace" />
 
-              <div className="news__display--owner">{item.authorName}</div>
+                  <div>
+                    <div className="news__display--header">
+                      <img
+                        src={avatar}
+                        alt="user-avatar"
+                        className="news__display--avatar"
+                      />
 
-              <div className="news__display--dateTime">{item.date}</div>
+                      <div className="news__display-owner_wrapper">
+                        <div className="news__display--owner">
+                          {item.authorName}
+                        </div>
 
-              <div className="news__display--content">{item.body}</div>
+                        <div className="news__display--dateTime">
+                          {item.date}
+                        </div>
+                      </div>
+                    </div>
 
-              <img
-                src={postedImg}
-                alt="in post"
-                className="news__display--posted-image"
-              />
+                    <div className="news__display--content">
+                      <p>{item.body}</p>
+                    </div>
 
-              <div className="news__display--like-comment-container">
-                <div className="news__display--counter">
-                  <img
-                    src={likeIcon}
-                    alt="in post"
-                    className="news__display--like-count"
-                  />
-
-                  <p className="news__display--counterInNumLeft">
-                    {item.likesQuantity > 0
-                      ? item.likesQuantity
-                      : this.state.likesQuantity}
-                  </p>
-                </div>
-
-                <div className="news__display--counter">
-                  <img
-                    src={commentIcon}
-                    alt="in post"
-                    className="news__display--comment-count"
-                  />
-
-                  <p className="news__display--counterInNumRight">
-                    {item.comments.length}
-                  </p>
-                </div>
-              </div>
-
-              <SeparationLine
-                position="relative"
-                bottom="5"
-                opacity=".2"
-                margin="0 3rem"
-              />
-
-              <div className="news__display--like-comment-button">
-                <button
-                  className="news__display--like-button"
-                  onClick={() => this.isLike(item._id)}
-                >
-                  <img src={likeIcon} alt="like button" />
-                </button>
-
-                <button className="news__display--comment-button">
-                  <img src={commentIcon} alt="comment button" />
-                </button>
-              </div>
-
-              <SeparationLine
-                position="relative"
-                bottom="2rem"
-                opacity=".2"
-                margin="0"
-              />
-
-              {item.comments.map(cmt => (
-                <div className="news__display--comment-sprout" key={cmt._id}>
-                  <img
-                    src={avatar}
-                    alt="user-avatar"
-                    className="news__display--avatar news__display--avatar-small  "
-                  />
-
-                  <div className="news__display--comment-content">
-                    <Link
-                      className="news__display--userName"
-                      to={`/profile/${cmt.commentsAuthor}`}
-                    >
-                      {cmt.authorName}
-                    </Link>
-
-                    <p className="news__display--comment-text">{cmt.body}</p>
+                    <div className="news__display--posted-image_sprout">
+                      <img
+                        src={postedImg}
+                        alt="in post"
+                        className="news__display--posted-image"
+                      />
+                    </div>
                   </div>
                 </div>
-              ))}
-              <SeparationLine
-                position="relative"
-                bottom="2rem"
-                opacity=".2"
-                margin="0"
-              />
+                <div className="news__display-seperator">
+                  <div className="news__display-like_comment_display">
+                    <div>
+                      <div className="news__display--like-comment-container">
+                        <div className="news__display--like-comment-smaller_sprout">
+                          <div className="news__display--like_counter">
+                            <span className="news__display--like-count">
+                              <img src={likeIcon} alt="in post" />
+                            </span>
 
-              <div className="news__display--comment-action-box">
-                <img
-                  src={avatar}
-                  alt="user-avatar"
-                  className="news__display--avatar news__display--avatar-small  "
-                />
+                            <div className="news__display--counter_block">
+                              <span className="news__display--like_counter_inNum">
+                                <span className="">
+                                  {item.likesQuantity > 0
+                                    ? item.likesQuantity
+                                    : this.state.likesQuantity}
+                                </span>
+                              </span>
+                            </div>
+                          </div>
 
-                <div className="news__display--comment-input-sprout">
-                  <input
-                    className="news__display--comment-input-box"
-                    type="text"
-                    name="comment"
-                    value={this.state.comment}
-                    onChange={this.onChange}
-                  />
+                          <div className="news__display--empty_div" />
+
+                          <div className="news__display--comment_counter">
+                            <span>
+                              <span className="news__display--comment_count_inNum">
+                                {item.comments.length}
+                              </span>
+                              <img src={commentIcon} alt="in post" />
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="news__display--like-comment-button">
+                        <div className="news__display-button_smaller_wrapper">
+                          <span className="news__display-button_container">
+                            <div className="news__display-button--left_wrapper">
+                              <div>
+                                <button
+                                  className="news__display--like-button"
+                                  onClick={() => this.isLike(item._id)}
+                                >
+                                  <img
+                                    src={likeIcon}
+                                    alt="like button"
+                                    className="news__display--like-button_icon"
+                                  />
+                                  &nbsp;Thích
+                                </button>
+                              </div>
+                            </div>
+                          </span>
+
+                          <div className="news__display-button_container">
+                            <button className="news__display--comment-button">
+                              Bình luận
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {item.comments.map(cmt => (
+                    <div
+                      className="news__display--comment-sprout"
+                      key={cmt._id}
+                    >
+                      <img
+                        src={avatar}
+                        alt="user-avatar"
+                        className="news__display--avatar news__display--avatar-small  "
+                      />
+
+                      <div className="news__display--comment-content">
+                        <Link
+                          className="news__display--userName"
+                          to={`/profile/${cmt.commentsAuthor}`}
+                        >
+                          {cmt.authorName}
+                        </Link>
+
+                        <p className="news__display--comment-text">
+                          {cmt.body}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+
+                  <div className="news__display--comment-action-box">
+                    <img
+                      src={avatar}
+                      alt="user-avatar"
+                      className="news__display--avatar news__display--avatar-small  "
+                    />
+
+                    <div className="news__display--comment-input-sprout">
+                      <input
+                        className="news__display--comment-input-box"
+                        type="text"
+                        name="comment"
+                        value={this.state.comment}
+                        onChange={this.onChange}
+                      />
+                    </div>
+
+                    <button
+                      className="news__display--comment-action-button"
+                      onClick={() =>
+                        this.onComment(item._id, this.state.comment)
+                      }
+                    >
+                      Bình luận
+                    </button>
+                  </div>
                 </div>
-
-                <button
-                  className="news__display--comment-action-button"
-                  onClick={() => this.onComment(item._id, this.state.comment)}
-                >
-                  Bình luận
-                </button>
               </div>
             </div>
           ))}
