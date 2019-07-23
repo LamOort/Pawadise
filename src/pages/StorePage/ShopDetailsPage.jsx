@@ -29,6 +29,8 @@ class ShopDetailsPage extends Component {
         photos: res.data.photos,
         description: res.data.description
       });
+    }).catch(err => {
+      console.log(err);      
     });
   }
   render() {

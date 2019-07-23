@@ -7,6 +7,8 @@ export const actGetAllNewsRequest = () => {
   return dispatch => {
     return callApi("news", "GET", null).then(res => {
       dispatch(actGetAllNews(res.data));
+    }).catch(err => {
+      console.log(err);      
     });
   };
 };
@@ -22,6 +24,8 @@ export const actAddNewRequest = data => {
   return dispatch => {
     return callApi("posts", "POST", data).then(res => {
       dispatch(actAddNew(res.data));
+    }).catch(err => {
+      console.log(err);      
     });
   };
 };
@@ -56,6 +60,8 @@ export const actAddCommentsRequest = (id, new_cmt) => {
   return dispatch => {
     return callApi(`posts/${id}`, "POST", { comment: new_cmt }).then(res => {
       dispatch(actAddComment(res.data, res.data.comments));
+    }).catch(err => {
+      console.log(err);      
     });
   };
 };
@@ -72,6 +78,8 @@ export const actLikeRequest = id => {
   return dispatch => {
     return callApi(`posts/${id}/like`, "POST", null).then(res => {
       dispatch(actLike(res.data, res.data.likesQuantity));
+    }).catch(err => {
+      console.log(err);      
     });
   };
 };
@@ -110,6 +118,8 @@ export const actLoginUser = user => dispatch => {
 export const actGetProfile = decoded => dispatch => {
   callApi(`users/${decoded._id}`, "GET", null).then(res => {
     dispatch(setCurrentUser(res.data));
+  }).catch(err => {
+    console.log(err);      
   });
 };
 
