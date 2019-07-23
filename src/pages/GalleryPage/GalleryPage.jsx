@@ -131,10 +131,16 @@ class GalleryPage extends Component {
                 />
               </div>
             ))}
+          </div>
 
+          <div className="gallery__button-loadmore-sprout">
             {hasMoreImg ? (
-              <a href="#" onClick={this.loadMore}>
-                Load More
+              <a
+                href="#"
+                onClick={this.loadMore}
+                className="gallery__button-loadmore"
+              >
+                Xem thêm ^_^
               </a>
             ) : (
               ""

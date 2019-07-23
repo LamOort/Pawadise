@@ -182,7 +182,7 @@ class LoginForm extends Component {
             </a>
           </p>
         )}
-        <a href="#" onClick={this.onReset}>
+        <a href="#" onClick={this.onReset} className="login__forget-password">
           Quên mật khẩu?
         </a>
         <button className="login__close" onClick={this.props.closePopup}>
