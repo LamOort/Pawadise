@@ -18,47 +18,47 @@ const routes = [
     },
     {
         path: '/shop',
-        exact: false,
+        exact: true,
         main: () => <ShopPage />
     },
     {
         path: '/service',
-        exact: false,
+        exact: true,
         main: () => <ServicePage />
     },
     {
         path: '/news',
-        exact: false,
+        exact: true,
         main: () => <NewsPage />
     },
     {
         path: '/gallery',
-        exact: false,
+        exact: true,
         main: () => <GalleryPage />
     },
     {
         path: '/contact',
-        exact: false,
+        exact: true,
         main: () => <ContactPage />
     },
     {
         path: '/stores/:slug',
-        exact: false,
+        exact: true,
         main: ({match}) => <ShopDetailsPage match={match}/>
     },
     {
         path: '/services/:slug',
-        exact: false,
+        exact: true,
         main: ({match}) => <ServiceDetailsPage match={match}/>
     },
     {
         path: '/contact',
-        exact: false,
+        exact: true,
         main: () => <ContactPage />
     },
     {
         path: '/profile/:slug',
-        exact: false,
+        exact: true,
         main: () => <ProfilePage />
     },
     {

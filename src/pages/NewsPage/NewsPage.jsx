@@ -6,12 +6,12 @@ import { connect } from "react-redux";
 import {
   actGetAllNewsRequest,
   actAddCommentsRequest,
-  actLikeRequest
+  actLikeRequest,
+  actDeleteNewRequest
 } from "../../actions/index";
 
 import full_bg from "../../img/bg-full.png";
 import avatar from "../../img/user-avatar-sample.png";
-import postedImg from "../../img/img-posted-sample.png";
 import likeIcon from "../../img/like-icon.svg";
 import commentIcon from "../../img/comment-icon.svg";
 
@@ -57,14 +57,18 @@ class NewsPage extends Component {
     }
   };
 
+  onDeleteNew = id => {
+    this.props.onDeleteNew(id);
+  };
+
   componentDidMount() {
     this.props.getAllNews();
   }
 
   render() {
     const { news } = this.props;
-    const { isAuthenticated } = this.props.auth;
-    // const { likesQuantity } = this.state;
+    const { isAuthenticated, user } = this.props.auth;
+
     return (
       <main>
         <img src={full_bg} alt="full-bg" className="bg" />
@@ -99,16 +103,28 @@ class NewsPage extends Component {
                     </div>
 
                     <div className="news__display--content">
-                      <p>{item.body}</p>
+                      <p>
+                        {item.body}
+                        {/* {user._id === item.author ? (
+                            <button onClick={() => this.onDeleteNew(item._id)}>
+                              Xóa
+                            </button>
+                          ) : (
+                            ""
+                          )} */}
+                      </p>
                     </div>
 
-                    <div className="news__display--posted-image_sprout">
-                      <img
-                        src={postedImg}
-                        alt="in post"
-                        className="news__display--posted-image"
-                      />
-                    </div>
+                    {item.photos.map((photo, index) => (
+                      <div className="news__display--posted-image_sprout">
+                        <img
+                          key={index}
+                          src={`http://pawadise.cf:3000/${photo}`}
+                          alt="in post"
+                          className="news__display--posted-image"
+                        />
+                      </div>
+                    ))}
                   </div>
                 </div>
                 <div className="news__display-seperator">
@@ -254,6 +270,9 @@ const mapDispatchToProps = (dispatch, props) => {
     },
     isLike: id => {
       dispatch(actLikeRequest(id));
+    },
+    onDeleteNew: id => {
+      dispatch(actDeleteNewRequest(id));
     }
   };
 };

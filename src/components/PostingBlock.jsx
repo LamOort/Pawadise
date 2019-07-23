@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Prompt } from "react-router-dom";
 import { connect } from "react-redux";
 import SeparationLine from "./SeparationLine";
 import { actAddNewRequest } from "../actions";
@@ -11,7 +12,8 @@ class PostingBlock extends Component {
     super(props);
     this.state = {
       message: "",
-      photos: ""
+      photos: "",
+      isBlocking: false
     };
   }
 
@@ -20,7 +22,8 @@ class PostingBlock extends Component {
     var name = target.name;
     var value = target.value;
     this.setState({
-      [name]: value
+      [name]: value,
+      isBlocking: value.length > 0
     });
   };
 
@@ -30,15 +33,17 @@ class PostingBlock extends Component {
     const bodyFormData = new FormData();
     bodyFormData.set("body", message);
     bodyFormData.append("photos", photos);
-    if (message.length > 0) {
+    if (message.length > 0 || photos.length > 0) {
       this.props.onAddNew(bodyFormData);
       this.setState({
         message: "",
-        photos: ""
+        photos: "",
+        isBlocking: false
       });
     }
   };
   render() {
+    const { isBlocking } = this.state;
     return (
       <div className="news__post-container">
         <div className="news__post-container--header">
@@ -46,9 +51,11 @@ class PostingBlock extends Component {
             Tạo bài viết
           </p>
         </div>
-
+        <Prompt
+          when={isBlocking}
+          message={location => `Bạn muốn chuyển trang đến ${location.pathname}`}
+        />
         <div className="news__post-container--body">
-
           <div className="news__post-container--body--avatar-sprout">
             <img
               src={avatar}
@@ -56,7 +63,6 @@ class PostingBlock extends Component {
               className="news__post-container--body--avatar-img"
             />
           </div>
-          
 
           <div className="news__post-container--body--sprout">
             <textarea

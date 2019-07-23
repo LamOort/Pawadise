@@ -5,9 +5,6 @@ import StoreDetailDescription from "./StoreDetailDescription";
 import StoreDetailImage from "./StoreDetailImage";
 import full_bg from "../../img/bg-full.png";
 
-import sample from '../../img/background-2.jpg';
-
-
 class ServiceDetailsPage extends Component {
   constructor(props) {
     super(props);
@@ -28,29 +25,24 @@ class ServiceDetailsPage extends Component {
     });
   }
   render() {
-    const { info,photos,description } = this.state;
+    const { info, photos, description } = this.state;
 
     return (
       <div>
         <img src={full_bg} alt="full-bg" className="bg" />
-        <StoreDetailHeader info={info} photos={photos[0]}/>
-        <StoreDetailDescription info={info} description={description}/>
+        <StoreDetailHeader info={info} photos={photos[0]} />
+        <StoreDetailDescription info={info} description={description} />
 
         <p className="store__big-title">Hình ảnh</p>
-                
-                <div className="store__product--sprout">
-                   <StoreDetailImage img= {sample} />
 
-                   <StoreDetailImage img= {sample} />
-                   <StoreDetailImage img= {sample} />
-                   <StoreDetailImage img= {sample} />
-                   <StoreDetailImage img= {sample} />
-                   <StoreDetailImage img= {sample} />
-                   <StoreDetailImage img= {sample} />
-                   <StoreDetailImage img= {sample} />
-                   <StoreDetailImage img= {sample} />
-                </div>
-
+        <div className="store__product--sprout">
+          {photos.map((photo, index) => (
+            <StoreDetailImage
+              img={`http://pawadise.cf:3000/${photo}`}
+              key={index}
+            />
+          ))}
+        </div>
       </div>
     );
   }

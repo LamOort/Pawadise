@@ -19,7 +19,7 @@ class HomePage extends Component {
     super(props);
     this.state = { showPopup: false };
   }
-  
+
   togglePopup = () => {
     this.setState({
       showPopup: !this.state.showPopup
@@ -53,7 +53,6 @@ class HomePage extends Component {
                 />
               ) : null}
             </h1>
-            {/*Add Login and Register buttons */}
           </div>
         </header>
 

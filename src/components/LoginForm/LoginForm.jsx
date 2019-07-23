@@ -24,13 +24,23 @@ class LoginForm extends Component {
     });
   };
 
-  onHandleLogin = e => {
-    e.preventDefault();
+  onLogin = () => {
     const { username, password } = this.state;
     const { closePopup } = this.props;
     const user = { username: username, password: password };
     this.props.actLoginUser(user);
     closePopup();
+  };
+
+  onHandleLogin = e => {
+    e.preventDefault();
+    this.onLogin();
+  };
+
+  keyPressed = e => {
+    if (e.keyCode === 13) {
+      this.onLogin();
+    }
   };
 
   onHandleRegister = e => {
@@ -41,29 +51,26 @@ class LoginForm extends Component {
       username: username,
       email: email,
       password: password
-    }).then(res => {
-      if (res.status === 201) {
-        this.setState({
-          isAccount: true
-        });
-      }
-    });
+    })
+      .then(res => {
+        if (res.status === 201) {
+          this.setState({
+            isAccount: true
+          });
+        }
+      })
+      .catch(function(err) {
+        alert("Tài khoản này đã tồn tại. Vui lòng nhập lại thông tin");
+      });
   };
 
-  keyPressed = e => {
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      const { username, password } = this.state;
-      const { closePopup } = this.props;
-      const user = { username: username, password: password };
-      this.props.actLoginUser(user);
-      closePopup();
-    }
+  onReset = e => {
+    e.preventDefault();
   };
 
   render() {
-    var { isAccount } = this.state;
-    var title = isAccount ? "Đăng nhập" : "Đăng ký";
+    const { isAccount } = this.state;
+    const title = isAccount ? "Đăng nhập" : "Đăng ký";
     return (
       <div className="login">
         <div className="login__title">{title}</div>
@@ -88,10 +95,11 @@ class LoginForm extends Component {
             <input
               className="login__input"
               type="password"
-              placeholder="Mật khẩu"
+              placeholder="Mật khẩu (ít nhất 8 ký tự)"
               onChange={this.onChange}
               onKeyDown={this.keyPressed}
               name="password"
+              minLength="8"
               required
             />
           </div>
@@ -103,7 +111,7 @@ class LoginForm extends Component {
             <div className="login__text-field">
               <input
                 className="login__input"
-                type="text"
+                type="email"
                 placeholder="Email"
                 onChange={this.onChange}
                 name="email"
@@ -174,6 +182,9 @@ class LoginForm extends Component {
             </a>
           </p>
         )}
+        <a href="#" onClick={this.onReset}>
+          Quên mật khẩu?
+        </a>
         <button className="login__close" onClick={this.props.closePopup}>
           &times;
         </button>

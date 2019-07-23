@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
-
+import React, { Component } from "react";
 
 class StoreDetailHeader extends Component {
   render() {
-    const { info,photos } = this.props;
+    const { info, photos } = this.props;
     return (
       <div className="store__header">
         <img
@@ -19,9 +18,7 @@ class StoreDetailHeader extends Component {
             className="store__header--avatar"
           />
 
-          <p className="store__header--storeName">
-            {info.name} {/*cái này sửa thành tên shop get từ DB */}
-          </p>
+          <p className="store__header--storeName">{info.name}</p>
         </div>
       </div>
     );

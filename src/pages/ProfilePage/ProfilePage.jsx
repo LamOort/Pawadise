@@ -13,7 +13,7 @@ class ProfilePage extends Component {
       email: "",
       age: "",
       phone: "",
-      avatar: "",
+      avatar: null,
       address: {
         street: "",
         district: "",
@@ -23,63 +23,90 @@ class ProfilePage extends Component {
   }
 
   componentDidMount() {
-    
     if (this.props && this.props.auth && this.props.auth.user) {
-      var { user } = this.props.auth;      
-      this.setState({
-        name: user.name,
-        email: user.email,
-        age: user.age,
-        phone: user.phoneNumber,
-        avatar: user.avatar,
-        address: user.address || {}
-      });
+      var { user } = this.props.auth;
+      this.setNewState(user);
     }
   }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps && nextProps.auth.user) {
-      var { user } = nextProps.auth;      
-      this.setState({
-        name: user.name,
-        email: user.email,
-        age: user.age,
-        phone: user.phoneNumber,
-        avatar: user.avatar,
-        address: user.address || {}
-      });
+      const { user } = nextProps.auth;
+      this.setNewState(user);
     }
   }
 
+  setNewState = user => {
+    this.setState({
+      name: user.name,
+      email: user.email,
+      age: user.age,
+      phone: user.phoneNumber,
+      avatar: user.avatar,
+      address: user.address || {}
+    });
+  };
+
   onChange = e => {
-    var target = e.target;
-    var name = target.name;
-    var value = target.value;
+    let target = e.target;
+    let name = target.name;
+    let value = target.value;
     this.setState({
       [name]: value
     });
   };
 
+  onChangeStreet = e => {
+    let newState = Object.assign({}, this.state);
+    newState.address.street = e.target.value;
+    this.setState(newState);
+  };
+
+  onChangeDistrict = e => {
+    let newState = Object.assign({}, this.state);
+    newState.address.district = e.target.value;
+    this.setState(newState);
+  };
+
+  onChangeCity = e => {
+    let newState = Object.assign({}, this.state);
+    newState.address.city = e.target.value;
+    this.setState(newState);
+  };
+
+  fileSelectedHandler = e => {
+    this.setState({
+      avatar: e.target.files[0]
+    });
+  };
+
   onSave = e => {
     e.preventDefault();
-    alert("Chỉnh sửa thông tin thành công ^-^");
-    const { name, email, age, phone, avatar, address:{street,district,city} } = this.state;
-    const user = {
-      name: name,
-      email: email,
-      age: age,
-      phone: phone,
-      avatar: avatar,
-      street: street,
-      district: district,
-      city: city
-    };
-    this.props.onUpdateProfile(user);
+    const {
+      name,
+      email,
+      age,
+      phone,
+      avatar,
+      address: { street, district, city }
+    } = this.state;
+    const bodyFormData = new FormData();
+    bodyFormData.set("name", name);
+    bodyFormData.append("email", email);
+    bodyFormData.append("age", age);
+    bodyFormData.append("phoneNumber", phone);
+    bodyFormData.append("avatar", avatar);
+    bodyFormData.append("street", street);
+    bodyFormData.append("district", district);
+    bodyFormData.append("city", city);
+    if (bodyFormData !== null) {
+      this.props.onUpdateProfile(bodyFormData);
+      alert("Chỉnh sửa thông tin thành công ^-^");
+    }
   };
 
   render() {
-    // const { user } = this.props.auth;
-    const { name, email, age, phone, avatar, address:{street,district,city} } = this.state;
+    const { name, email, age, phone, avatar, address } = this.state;
 
     return (
       <main>
@@ -133,7 +160,7 @@ class ProfilePage extends Component {
               <div className="profile__value-sprout">
                 <input
                   className="profile__value"
-                  type="text"
+                  type="email"
                   placeholder="Email"
                   name="email"
                   value={email}
@@ -166,8 +193,8 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Bạn nhà ở Đường nào ?"
                   name="street"
-                  value={`${street}`}
-                  onChange={this.onChange}
+                  value={address.street}
+                  onChange={this.onChangeStreet}
                 />
               </div>
             </div>
@@ -181,8 +208,8 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Nhà bạn ở Quận nào ?"
                   name="district"
-                  value={`${district}`}
-                  onChange={this.onChange}
+                  value={address.district}
+                  onChange={this.onChangeDistrict}
                 />
               </div>
             </div>
@@ -196,28 +223,17 @@ class ProfilePage extends Component {
                   type="text"
                   placeholder="Bạn ở Thành Phố nào ?"
                   name="city"
-                  value={`${city}`}
-                  onChange={this.onChange}
+                  value={address.city}
+                  onChange={this.onChangeCity}
                 />
               </div>
             </div>
-
           </div>
 
           <button className="profile__save-button" onClick={this.onSave}>
-              Lưu
-            </button>
-          {/*<div
-            style={{
-              borderLeft: "1px solid #000",
-              borderRight: "1px solid #000",
-              height: "50rem",
-              position: "absolute",
-              right: "33%",
-              top: "127%",
-              opacity: ".2"
-            }}
-          />*/}
+            Lưu
+          </button>
+
           <div className="profile__avatar-container">
             <img
               src={`http://pawadise.cf:3000/${avatar}`}
@@ -226,7 +242,18 @@ class ProfilePage extends Component {
             />
           </div>
 
-          <input type="file" className="profile__change-avatar-button" />
+          <input
+            type="file"
+            style={{ display: "none" }}
+            onChange={this.fileSelectedHandler}
+            ref={fileInput => (this.fileInput = fileInput)}
+          />
+          <button
+            className="profile__change-avatar-button"
+            onClick={() => this.fileInput.click()}
+          >
+            Chọn ảnh
+          </button>
         </section>
       </main>
     );
