@@ -3,7 +3,7 @@ import * as Types from "../constants/ActionTypes";
 const inititalState = [];
 
 const news = (state = inititalState, action) => {
-  const { news, new1, comments, newC, newL, likesQuantity } = action;
+  const { id, news, new1, comments, newC, newL, likesQuantity } = action;
 
   let index = -1;
   switch (action.type) {
@@ -12,6 +12,10 @@ const news = (state = inititalState, action) => {
       return [...state];
     case Types.ADD_NEWS:
       state.unshift(new1);
+      return [...state];
+    case Types.DELETE_NEWS:
+      index = findIndex(state, id);
+      state.splice(index, 1);
       return [...state];
     case Types.ADD_COMMENTS:
       index = findIndex(state, newC);

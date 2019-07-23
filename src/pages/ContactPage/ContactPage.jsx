@@ -1,5 +1,7 @@
 import React, { Component } from "react";
+import { Prompt } from "react-router-dom";
 import callApi from "../../utils/callApi";
+import full_bg from "../../img/bg-full.png";
 
 class ContactPage extends Component {
   constructor(props) {
@@ -9,7 +11,8 @@ class ContactPage extends Component {
       email: "",
       title: "",
       phone: "",
-      content: ""
+      content: "",
+      isBlocking: false
     };
   }
 
@@ -18,7 +21,8 @@ class ContactPage extends Component {
     let name = target.name;
     let value = target.value;
     this.setState({
-      [name]: value
+      [name]: value,
+      isBlocking: value.length > 0
     });
   };
 
@@ -32,22 +36,32 @@ class ContactPage extends Component {
       phone: phone,
       content: content
     };
-    callApi("contact", "POST", data).then(res => {
-      alert("Thông tin đã được gửi đến chúng tôi !!!");
-      this.setState({
-        name: "",
-        email: "",
-        title: "",
-        phone: "",
-        content: ""
+    if (data.length > 0) {
+      callApi("contact", "POST", data).then(res => {
+        alert("Thông tin đã được gửi đến chúng tôi !!!");
+        this.setState({
+          name: "",
+          email: "",
+          title: "",
+          phone: "",
+          content: "",
+          isBlocking: false
+        });
       });
-    });
+    } else {
+      alert("Bạn chưa điền thông tin. Vui lòng nhập lại.");
+    }
   };
 
   render() {
-    const { name, email, title, phone, content } = this.state;
+    const { name, email, title, phone, content, isBlocking } = this.state;
     return (
       <main>
+        <Prompt
+          when={isBlocking}
+          message={location => `Bạn muốn chuyển trang đến ${location.pathname}`}
+        />
+        <img src={full_bg} alt="full-bg" className="bg" />
         <header className="header--contact" />
         <div className="contact">
           <h2 className="contact__title">
@@ -56,7 +70,7 @@ class ContactPage extends Component {
 
           <form method="post" action="#" className="contact__form">
             <div className="contact__left">
-              <label className="contact__label " for="name">
+              <label className="contact__label " htmlFor="name">
                 Tên
               </label>
               <div className="contact__text-field u-margin-bottom-small">
@@ -72,13 +86,13 @@ class ContactPage extends Component {
                 />
               </div>
 
-              <label className="contact__label" for="email">
+              <label className="contact__label" htmlFor="email">
                 Email
               </label>
               <div className="contact__text-field u-margin-bottom-small">
                 <input
                   className="contact__input"
-                  type="text"
+                  type="email"
                   name="email"
                   id="email"
                   placeholder="Email"
@@ -88,7 +102,7 @@ class ContactPage extends Component {
                 />
               </div>
 
-              <label className="contact__label" for="title">
+              <label className="contact__label" htmlFor="title">
                 Tiêu đề
               </label>
               <div className="contact__text-field u-margin-bottom-small">
@@ -104,7 +118,7 @@ class ContactPage extends Component {
                 />
               </div>
 
-              <label className="contact__label" for="phone">
+              <label className="contact__label" htmlFor="phone">
                 Điện thoại
               </label>
               <div className="contact__text-field u-margin-bottom-small">

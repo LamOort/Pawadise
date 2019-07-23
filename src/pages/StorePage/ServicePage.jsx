@@ -9,14 +9,20 @@ const ListItem = ({ service }) => {
   return (
     <div className="info--service">
       <div className="info__image--sprout">
-        <img src={`http://pawadise.cf:3000/${service.avatar}`} alt="shopPhoto" className="info__image--displayed" />
+        <img
+          src={`http://pawadise.cf:3000/${service.avatar}`}
+          alt="servicePhoto"
+          className="info__image--displayed"
+        />
       </div>
-      
+
       <div className="info__text-container">
         <div className="info__text-container--title">{service.name}</div>
         <div className="info__text-container--address">
           Địa chỉ:
-          {service.address.map((item, index) => <li key={index}>{item}</li>)}
+          {service.address.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))}
         </div>
       </div>
 
@@ -38,6 +44,8 @@ class ServicePage extends Component {
     callApi("service", "GET", null).then(res => {
       this.setState({
         services: res.data
+      }).catch(err => {
+        console.log(err);      
       });
     });
   }

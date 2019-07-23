@@ -4,6 +4,6 @@ export const DELETE_NEWS = "DELETE_NEWS";
 export const GET_COMMENTS = "GET_COMMENTS";
 export const ADD_COMMENTS = "ADD_COMMENTS";
 export const DELETE_COMMENTS = "DELETE_COMMENTS";
-export const SET_CURRENT_USER = 'SET_CURRENT_USER';
+export const SET_CURRENT_USER = "SET_CURRENT_USER";
 export const LIKE_NEWS = "LIKE_NEWS";
 export const EDIT_PROFILE = "EDIT_PROFILE";

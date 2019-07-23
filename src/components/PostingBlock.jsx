@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Prompt } from "react-router-dom";
 import { connect } from "react-redux";
 import SeparationLine from "./SeparationLine";
 import { actAddNewRequest } from "../actions";
@@ -11,48 +12,75 @@ class PostingBlock extends Component {
     super(props);
     this.state = {
       message: "",
-      photos: ""
+      photos: [],
+      isBlocking: false
     };
   }
 
   onChange = e => {
-    var target = e.target;
-    var name = target.name;
-    var value = target.value;
+    let target = e.target;
+    let name = target.name;
+    let value = target.value;
     this.setState({
-      [name]: value
+      [name]: value,
+      isBlocking: value.length > 0
+    });
+  };
+
+  fileSelectedHandler = e => {
+    const files = Array.from(e.target.files);
+    this.setState({
+      photos: files
     });
   };
 
   onSubmit = e => {
     e.preventDefault();
     const { message, photos } = this.state;
-    const bodyFormData = new FormData();
+    let bodyFormData = new FormData();
     bodyFormData.set("body", message);
-    bodyFormData.append("photos", photos);
-    if (message.length > 0) {
+    photos.map(file => bodyFormData.append("photos", file));
+    if (message.length > 0 || photos.length > 0) {
       this.props.onAddNew(bodyFormData);
       this.setState({
         message: "",
-        photos: ""
+        photos: [],
+        isBlocking: false
       });
     }
   };
   render() {
+    const { isBlocking, photos } = this.state;
+    console.log(photos);
+
     return (
-      <div className="news__post-container u-margin-bottom-big">
+      <div className="news__post-container">
         <div className="news__post-container--header">
           <p className="news__post-container--header--paragraph">
             Tạo bài viết
           </p>
-        </div>
-
-        <div className="news__post-container--body">
-          <img
-            src={avatar}
-            alt="user-avatar"
-            className="news__post-container--body--avatar"
+          <input
+            type="file"
+            name="files"
+            style={{ display: "none" }}
+            onChange={this.fileSelectedHandler}
+            ref={fileInput => (this.fileInput = fileInput)}
+            multiple
           />
+          
+        </div>
+        <Prompt
+          when={isBlocking}
+          message={location => `Bạn muốn chuyển trang đến ${location.pathname}`}
+        />
+        <div className="news__post-container--body">
+          <div className="news__post-container--body--avatar-sprout">
+            <img
+              src={avatar}
+              alt="user-avatar"
+              className="news__post-container--body--avatar-img"
+            />
+          </div>
 
           <div className="news__post-container--body--sprout">
             <textarea
@@ -63,7 +91,13 @@ class PostingBlock extends Component {
               onChange={this.onChange}
             />
           </div>
-
+          
+          <button
+            className="news__post-container--upload_photo-btn"
+            onClick={() => this.fileInput.click()}
+          >
+            Chọn ảnh
+          </button>
           <button
             className="btn__action btn__action--post"
             onClick={this.onSubmit}
@@ -79,7 +113,7 @@ class PostingBlock extends Component {
 
         <SeparationLine
           position="relative"
-          bottom="12rem"
+          bottom="9rem"
           opacity=".2"
           margin="0 5rem"
         />

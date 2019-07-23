@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { actLogoutUser } from "../../actions/index";
 import React, { Component } from "react";
@@ -12,45 +12,47 @@ const navImgStyle = {
 };
 
 const Welcome = ({ user, onLogout }) => {
-  return(
+  return (
     <li style={{ listStyleType: "none" }} className="navigation__welcome">
-        <a
-          href="#"
-          style={{ textDecoration: "none" }}
-          className="dropdown-toggle menu-item navigation__user"
-          data-toggle="dropdown"
-        >
-          {user.name}
-        </a>
-        <ul className="dropdown-menu">
-          <li style={{ listStyleType: "none" }}>
-            <Link 
-            style={{ textDecoration: "none" }} className="navigation__user--attribute" 
-            to={`/profile/${user.username}`}>&bull; Trang cá nhân</Link>
-          </li>
-
-          <li style={{ listStyleType: "none" }}>
-            <Link 
+      <a
+        href="#"
+        style={{ textDecoration: "none" }}
+        className="dropdown-toggle menu-item navigation__user"
+        data-toggle="dropdown"
+      >
+        {user.name}
+      </a>
+      <ul className="dropdown-menu">
+        <li style={{ listStyleType: "none" }}>
+          <Link
             style={{ textDecoration: "none" }}
-            className="navigation__user--attribute" 
-            to="/" 
-            onClick={onLogout}>
-              &bull; Đăng xuất
-            </Link>
-          </li>
-        </ul>
-      </li>
+            className="navigation__user--attribute"
+            to={`/profile/${user.username}`}
+          >
+            &bull; Trang cá nhân
+          </Link>
+        </li>
+
+        <li style={{ listStyleType: "none" }}>
+          <Link
+            style={{ textDecoration: "none" }}
+            className="navigation__user--attribute"
+            to="/"
+            onClick={onLogout}
+          >
+            &bull; Đăng xuất
+          </Link>
+        </li>
+      </ul>
+    </li>
   );
 };
 class Nav extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { user: null};
-  }
-
   onLogout = e => {
     e.preventDefault();
-    this.props.actLogoutUser();
+    if (this.props.history) {
+      this.props.actLogoutUser(this.props.history);
+    }
   };
 
   render() {
@@ -122,4 +124,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { actLogoutUser }
-)(Nav);
+)(withRouter(Nav));
