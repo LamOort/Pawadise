@@ -511,6 +511,7 @@
       background-color: #f2f3f5;
       border: 1px solid #ccd0d5;
       border-radius: 16px;
+      width: 80%;
       display: flex;
       justify-content: flex-end;
       height: 5vh;
@@ -519,7 +520,7 @@
     &--comment-action-button {
       position: absolute;
       right: 2%;
-      bottom: 1.6%;
+      bottom: 1%;
       height: 5vh;
       width: 5vw;
       font-size: 1vw;
@@ -532,10 +533,10 @@
 
     &--comment-paragraph {
       position: absolute;
-      top: 1vh;
+      top: .1vh;
       left: 2%;
-      height: 5vh;
-      width: 80%;
+      height: 4.8vh;
+      width: 96%;
       font-size: 1.2vw;
       font-weight: 400;
       outline: none;
