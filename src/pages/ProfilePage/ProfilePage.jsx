@@ -177,7 +177,7 @@ class ProfilePage extends Component {
                   className="profile__value"
                   type="text"
                   placeholder="Giúp chúng tôi giữ liên lạc"
-                  name="phoneNumber"
+                  name="phone"
                   onChange={this.onChange}
                   value={phone}
                 />
