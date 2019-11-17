@@ -272,7 +272,4 @@ const mapDispatchToProps = (dispatch, props) => {
   };
 };
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(ProfilePage);
+export default connect(mapStateToProps, mapDispatchToProps)(ProfilePage);
